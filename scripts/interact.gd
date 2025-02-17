@@ -1,10 +1,12 @@
 class_name Interact
 extends Sprite2D
 
+
 signal interacted
 
-@export var distance := 100.0
-@onready var player := %Player as Node2D
+@export var distance := 32.0
+
+@onready var player := %Player
 
 
 func _process(_delta: float) -> void:
