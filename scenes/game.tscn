@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=11 format=4 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Texture2D" uid="uid://bphekdwqum5c5" path="res://sprites/tilemap.aseprite" id="2_a0cos"]
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="3_4cbc5"]
+[ext_resource type="Texture2D" uid="uid://c5k0cuko8rw6c" path="res://sprites/control.aseprite" id="3_bysyd"]
+[ext_resource type="Script" path="res://scripts/interact.gd" id="3_vxml4"]
+[ext_resource type="Script" path="res://scripts/control_airship.gd" id="5_d8t1b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bp8ri"]
 texture = ExtResource("2_a0cos")
@@ -27,6 +31,13 @@ texture = ExtResource("2_a0cos")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bp8ri")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejh8x"]
+atlas = ExtResource("3_4cbc5")
+region = Rect2(304, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
+size = Vector2(32, 24)
+
 [node name="Game" type="Node2D"]
 texture_filter = 1
 
@@ -35,5 +46,24 @@ tile_map_data = PackedByteArray("AAAIAAQAAAABAAEAAAAIAAUAAAABAAEAAAAIAAYAAAABAAE
 tile_set = SubResource("TileSet_vw7oa")
 
 [node name="Player" parent="." instance=ExtResource("1_whmg4")]
+unique_name_in_owner = true
 position = Vector2(160, 89)
 speed = 100.0
+
+[node name="ShipControl" type="StaticBody2D" parent="."]
+position = Vector2(160, 57)
+
+[node name="Interact" type="Sprite2D" parent="ShipControl"]
+position = Vector2(0, -23)
+texture = SubResource("AtlasTexture_ejh8x")
+script = ExtResource("3_vxml4")
+distance = 40.0
+
+[node name="ControlAirship" type="Node" parent="ShipControl/Interact"]
+script = ExtResource("5_d8t1b")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShipControl"]
+texture = ExtResource("3_bysyd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipControl"]
+shape = SubResource("RectangleShape2D_adu1i")
