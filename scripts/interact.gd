@@ -18,6 +18,7 @@ func _input(event: InputEvent) -> void:
 
 
 func on_range() -> bool:
+	# Get distance from parent to the player
 	if get_parent().global_position.distance_to(player.global_position) <= distance:
 		return true
 	else:
