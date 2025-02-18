@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://doj4a7ovac6pm"]
+
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_cwfr8"]
+[ext_resource type="Script" path="res://scripts/interact.gd" id="2_qd10p"]
+[ext_resource type="Script" path="res://scripts/deliver.gd" id="3_gd66n"]
+[ext_resource type="Texture2D" uid="uid://cfidh1gbvgxwn" path="res://sprites/button.png" id="4_8x0pw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1f58"]
+atlas = ExtResource("1_cwfr8")
+region = Rect2(304, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3acbu"]
+size = Vector2(14, 14)
+
+[node name="DeliveryButton" type="StaticBody2D"]
+texture_filter = 1
+
+[node name="Interact" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = SubResource("AtlasTexture_y1f58")
+script = ExtResource("2_qd10p")
+
+[node name="Deliver" type="Node" parent="Interact"]
+script = ExtResource("3_gd66n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_8x0pw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_3acbu")

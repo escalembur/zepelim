@@ -22,7 +22,6 @@ func _init() -> void:
 
 func _ready():
 	current_thrust_index = thrust_levels.find(0)
-	print(destination)
 
 func _input(event):
 	if controlling:
@@ -32,7 +31,6 @@ func _input(event):
 			current_thrust_index = clamp(current_thrust_index - 1, 0, len(thrust_levels) - 1)
 
 func _physics_process(delta):
-	check_destination()
 	var rotation_input := 0.0
 	if controlling:
 		rotation_input = Input.get_axis("ui_left", "ui_right")
@@ -60,8 +58,3 @@ func _physics_process(delta):
 	# Set velocity and move
 	velocity = direction * current_speed
 	move_and_slide()
-	
-	
-func check_destination() -> void:
-	if global_position.distance_to(destination) <= 30:
-		destination = Vector2(randf_range(-5000, 5000), randf_range(-5000, 5000))
