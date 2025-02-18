@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8i7x861lvm7k"]
+
+[ext_resource type="Script" path="res://scripts/radar.gd" id="1_1d40r"]
+
+[sub_resource type="Gradient" id="Gradient_3lnvv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.648936, 0.737589)
+colors = PackedColorArray(0.151996, 0.151996, 0.151996, 1, 0.560955, 0.560955, 0.560955, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lhal1"]
+gradient = SubResource("Gradient_3lnvv")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_yqs1l"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.861702)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.77152, 0.263343, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4xcre"]
+gradient = SubResource("Gradient_yqs1l")
+width = 2
+height = 2
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Radar" type="Sprite2D"]
+position = Vector2(38, -71)
+texture = SubResource("GradientTexture2D_lhal1")
+script = ExtResource("1_1d40r")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -6)
+texture = SubResource("GradientTexture2D_4xcre")
