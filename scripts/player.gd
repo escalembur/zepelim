@@ -1,8 +1,12 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed := 300.0
 
 var can_move := true
+
+func _init() -> void:
+	Global.player = self
 
 func _physics_process(_delta):
 	if !can_move: return

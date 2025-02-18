@@ -5,8 +5,7 @@ extends Sprite2D
 signal interacted
 
 @export var distance := 32.0
-
-@onready var player := %Player
+var player := Global.player
 
 
 func _process(_delta: float) -> void:

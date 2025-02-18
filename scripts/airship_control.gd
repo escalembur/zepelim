@@ -1,10 +1,9 @@
 extends Node
 
 
+@onready var airship := Global.airship
+@onready var player := Global.player
 var interact_parent: Interact
-
-@onready var airship := %Airship
-@onready var player := %Player
 
 
 func _ready() -> void:
