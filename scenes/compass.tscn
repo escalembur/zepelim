@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://r8unj6qmun56"]
+
+[ext_resource type="Script" path="res://scripts/compass.gd" id="1_ejaig"]
+
+[sub_resource type="Gradient" id="Gradient_3lnvv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.648936, 0.737589)
+colors = PackedColorArray(0.151996, 0.151996, 0.151996, 1, 0.560955, 0.560955, 0.560955, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lhal1"]
+gradient = SubResource("Gradient_3lnvv")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Compass" type="Sprite2D"]
+position = Vector2(55, -71)
+texture = SubResource("GradientTexture2D_lhal1")
+script = ExtResource("1_ejaig")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, -6, 0, -1)
+width = 1.0
