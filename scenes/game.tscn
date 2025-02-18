@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=13 format=4 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Texture2D" uid="uid://bo2tcj0cy8y4g" path="res://sprites/tilemap.png" id="3_0p6tu"]
 [ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
+[ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
+[ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="9_c5h6e"]
+[ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
 size = Vector2(160, 192)
@@ -43,7 +47,11 @@ texture = ExtResource("8_f3ffd")
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vugrx")
-rotation_speed = 0.5
+max_speed_forward = 100.0
+max_speed_reverse = 50.0
+rotation_speed = 1.0
+acceleration = 20.0
+deceleration = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
 shape = SubResource("RectangleShape2D_1aiqq")
@@ -62,3 +70,17 @@ position = Vector2(0, -69)
 
 [node name="Camera2D" type="Camera2D" parent="Airship"]
 ignore_rotation = false
+
+[node name="Distance" type="Label" parent="Airship"]
+offset_left = -65.0
+offset_top = -81.0
+offset_right = -30.0
+offset_bottom = -71.0
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "12390"
+script = ExtResource("6_6fgrp")
+
+[node name="Compass" parent="Airship" instance=ExtResource("8_4o8pk")]
+
+[node name="Radar" parent="Airship" instance=ExtResource("9_ddyvd")]
