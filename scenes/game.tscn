@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=13 format=4 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Texture2D" uid="uid://bo2tcj0cy8y4g" path="res://sprites/tilemap.png" id="3_0p6tu"]
-[ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="PackedScene" uid="uid://bklbedmk5tib3" path="res://scenes/interaction_manager.tscn" id="4_biuy4"]
+[ext_resource type="PackedScene" uid="uid://doj00idw5883t" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="PackedScene" uid="uid://b1rkkask11vgx" path="res://scenes/lamp.tscn" id="6_gab6t"]
+[ext_resource type="PackedScene" uid="uid://cqvp014kcm0d6" path="res://scenes/tape.tscn" id="7_6lbri"]
+[ext_resource type="PackedScene" uid="uid://dk6rb76y6158m" path="res://scenes/wrench.tscn" id="8_481ig"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
@@ -37,9 +41,11 @@ sources/1 = SubResource("TileSetAtlasSource_bch2x")
 texture_filter = 1
 
 [node name="Map" type="Sprite2D" parent="."]
+z_index = -50
 texture = ExtResource("8_f3ffd")
 
 [node name="Airship" type="CharacterBody2D" parent="."]
+y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vugrx")
@@ -49,8 +55,11 @@ rotation_speed = 0.5
 shape = SubResource("RectangleShape2D_1aiqq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Airship"]
+z_index = -20
 tile_map_data = PackedByteArray("AAD7//r/AQAAAAAAAAD7//v/AQAAAAEAAAD7//z/AQAAAAEAAAD7//3/AQAAAAEAAAD7//7/AQAAAAEAAAD7////AQAAAAEAAAD7/wAAAQAAAAEAAAD7/wEAAQAAAAEAAAD7/wIAAQAAAAEAAAD7/wMAAQAAAAEAAAD7/wQAAQAAAAEAAAD7/wUAAQAAAAIAAAD8//r/AQABAAAAAAD8//v/AQABAAEAAAD8//z/AQABAAEAAAD8//3/AQABAAEAAAD8//7/AQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD8/wEAAQABAAEAAAD8/wIAAQABAAEAAAD8/wMAAQABAAEAAAD8/wQAAQABAAEAAAD8/wUAAQABAAIAAAD9//r/AQABAAAAAAD9//v/AQABAAEAAAD9//z/AQABAAEAAAD9//3/AQABAAEAAAD9//7/AQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD9/wEAAQABAAEAAAD9/wIAAQABAAEAAAD9/wMAAQABAAEAAAD9/wQAAQABAAEAAAD9/wUAAQABAAIAAAD+//r/AQABAAAAAAD+//v/AQABAAEAAAD+//z/AQABAAEAAAD+//3/AQABAAEAAAD+//7/AQABAAEAAAD+////AQABAAEAAAD+/wAAAQABAAEAAAD+/wEAAQABAAEAAAD+/wIAAQABAAEAAAD+/wMAAQABAAEAAAD+/wQAAQABAAEAAAD+/wUAAQABAAIAAAD///r/AQABAAAAAAD///v/AQABAAEAAAD///z/AQABAAEAAAD///3/AQABAAEAAAD///7/AQABAAEAAAD/////AQABAAEAAAD//wAAAQABAAEAAAD//wEAAQABAAEAAAD//wIAAQABAAEAAAD//wMAAQABAAEAAAD//wQAAQABAAEAAAD//wUAAQABAAIAAAAAAPr/AQABAAAAAAAAAPv/AQABAAEAAAAAAPz/AQABAAEAAAAAAP3/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAEAAAAAAAEAAQABAAEAAAAAAAIAAQABAAEAAAAAAAMAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAIAAAABAPr/AQABAAAAAAABAPv/AQABAAEAAAABAPz/AQABAAEAAAABAP3/AQABAAEAAAABAP7/AQABAAEAAAABAP//AQABAAEAAAABAAAAAQABAAEAAAABAAEAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAABAAQAAQABAAEAAAABAAUAAQABAAIAAAACAPr/AQABAAAAAAACAPv/AQABAAEAAAACAPz/AQABAAEAAAACAP3/AQABAAEAAAACAP7/AQABAAEAAAACAP//AQABAAEAAAACAAAAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAACAAMAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAIAAAADAPr/AQABAAAAAAADAPv/AQABAAEAAAADAPz/AQABAAEAAAADAP3/AQABAAEAAAADAP7/AQABAAEAAAADAP//AQABAAEAAAADAAAAAQABAAEAAAADAAEAAQABAAEAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAIAAAAEAPr/AQACAAAAAAAEAPv/AQACAAEAAAAEAPz/AQACAAEAAAAEAP3/AQACAAEAAAAEAP7/AQACAAEAAAAEAP//AQACAAEAAAAEAAAAAQACAAEAAAAEAAEAAQACAAEAAAAEAAIAAQACAAEAAAAEAAMAAQACAAEAAAAEAAQAAQACAAEAAAAEAAUAAQACAAIAAAA=")
 tile_set = SubResource("TileSet_vw7oa")
+
+[node name="InteractionManager" parent="Airship" instance=ExtResource("4_biuy4")]
 
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 collision_layer = 2
@@ -59,6 +68,15 @@ speed = 100.0
 
 [node name="ControlPanel" parent="Airship" instance=ExtResource("5_c0fbq")]
 position = Vector2(0, -69)
+
+[node name="Lamp" parent="Airship" instance=ExtResource("6_gab6t")]
+position = Vector2(-41, 53)
+
+[node name="Tape" parent="Airship" instance=ExtResource("7_6lbri")]
+position = Vector2(0, 53)
+
+[node name="Wrench" parent="Airship" instance=ExtResource("8_481ig")]
+position = Vector2(44, 53)
 
 [node name="Camera2D" type="Camera2D" parent="Airship"]
 ignore_rotation = false

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bklbedmk5tib3"]
+
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_isqyi"]
+[ext_resource type="Script" path="res://scripts/interaction_manager.gd" id="1_stbxx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w56o6"]
+atlas = ExtResource("1_isqyi")
+region = Rect2(320, 64, 16, 16)
+
+[node name="InteractionManager" type="Node2D"]
+z_index = 20
+script = ExtResource("1_stbxx")
+
+[node name="Button" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_w56o6")
+offset = Vector2(0, -23)
