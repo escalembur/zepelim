@@ -13,7 +13,7 @@ var current_thrust_index = 2  # Starts at neutral (0)
 var current_speed: float = 0.0
 var target_speed: float = 0.0
 var controlling := false
-
+var thrust_value
 var destination: Vector2
 
 func _init() -> void:
@@ -42,7 +42,7 @@ func _physics_process(delta):
 	var direction = -transform.y
 	
 	# Update target speed based on thrust level
-	var thrust_value = thrust_levels[current_thrust_index]
+	thrust_value = thrust_levels[current_thrust_index]
 	match thrust_value:
 		2: target_speed = max_speed_forward
 		1: target_speed = max_speed_forward * 0.5

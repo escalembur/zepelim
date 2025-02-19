@@ -1,18 +1,18 @@
-[gd_scene load_steps=14 format=4 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=17 format=4 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
+[ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
 [ext_resource type="Texture2D" uid="uid://bo2tcj0cy8y4g" path="res://sprites/tilemap.png" id="3_0p6tu"]
 [ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
 [ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
+[ext_resource type="Script" path="res://scripts/timer_label.gd" id="8_l3frb"]
 [ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="9_c5h6e"]
 [ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
+[ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
-size = Vector2(160, 192)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bch2x"]
 texture = ExtResource("3_0p6tu")
@@ -38,8 +38,14 @@ texture = ExtResource("3_0p6tu")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_bch2x")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
+size = Vector2(160, 192)
+
 [node name="World" type="Node2D"]
 texture_filter = 1
+
+[node name="TimeManager" type="Timer" parent="."]
+script = ExtResource("2_24dxf")
 
 [node name="Map" type="Sprite2D" parent="."]
 texture = ExtResource("8_f3ffd")
@@ -54,24 +60,34 @@ rotation_speed = 1.0
 acceleration = 20.0
 deceleration = 30.0
 
-[node name="Camera2D" type="Camera2D" parent="Airship"]
-ignore_rotation = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
-shape = SubResource("RectangleShape2D_1aiqq")
-
 [node name="TileMapLayer" type="TileMapLayer" parent="Airship"]
 tile_map_data = PackedByteArray("AAD7//r/AQAAAAAAAAD7//v/AQAAAAEAAAD7//z/AQAAAAEAAAD7//3/AQAAAAEAAAD7//7/AQAAAAEAAAD7////AQAAAAEAAAD7/wAAAQAAAAEAAAD7/wEAAQAAAAEAAAD7/wIAAQAAAAEAAAD7/wMAAQAAAAEAAAD7/wQAAQAAAAEAAAD7/wUAAQAAAAIAAAD8//r/AQABAAAAAAD8//v/AQABAAEAAAD8//z/AQABAAEAAAD8//3/AQABAAEAAAD8//7/AQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD8/wEAAQABAAEAAAD8/wIAAQABAAEAAAD8/wMAAQABAAEAAAD8/wQAAQABAAEAAAD8/wUAAQABAAIAAAD9//r/AQABAAAAAAD9//v/AQABAAEAAAD9//z/AQABAAEAAAD9//3/AQABAAEAAAD9//7/AQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD9/wEAAQABAAEAAAD9/wIAAQABAAEAAAD9/wMAAQABAAEAAAD9/wQAAQABAAEAAAD9/wUAAQABAAIAAAD+//r/AQABAAAAAAD+//v/AQABAAEAAAD+//z/AQABAAEAAAD+//3/AQABAAEAAAD+//7/AQABAAEAAAD+////AQABAAEAAAD+/wAAAQABAAEAAAD+/wEAAQABAAEAAAD+/wIAAQABAAEAAAD+/wMAAQABAAEAAAD+/wQAAQABAAEAAAD+/wUAAQABAAIAAAD///r/AQABAAAAAAD///v/AQABAAEAAAD///z/AQABAAEAAAD///3/AQABAAEAAAD///7/AQABAAEAAAD/////AQABAAEAAAD//wAAAQABAAEAAAD//wEAAQABAAEAAAD//wIAAQABAAEAAAD//wMAAQABAAEAAAD//wQAAQABAAEAAAD//wUAAQABAAIAAAAAAPr/AQABAAAAAAAAAPv/AQABAAEAAAAAAPz/AQABAAEAAAAAAP3/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAEAAAAAAAEAAQABAAEAAAAAAAIAAQABAAEAAAAAAAMAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAIAAAABAPr/AQABAAAAAAABAPv/AQABAAEAAAABAPz/AQABAAEAAAABAP3/AQABAAEAAAABAP7/AQABAAEAAAABAP//AQABAAEAAAABAAAAAQABAAEAAAABAAEAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAABAAQAAQABAAEAAAABAAUAAQABAAIAAAACAPr/AQABAAAAAAACAPv/AQABAAEAAAACAPz/AQABAAEAAAACAP3/AQABAAEAAAACAP7/AQABAAEAAAACAP//AQABAAEAAAACAAAAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAACAAMAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAIAAAADAPr/AQABAAAAAAADAPv/AQABAAEAAAADAPz/AQABAAEAAAADAP3/AQABAAEAAAADAP7/AQABAAEAAAADAP//AQABAAEAAAADAAAAAQABAAEAAAADAAEAAQABAAEAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAIAAAAEAPr/AQACAAAAAAAEAPv/AQACAAEAAAAEAPz/AQACAAEAAAAEAP3/AQACAAEAAAAEAP7/AQACAAEAAAAEAP//AQACAAEAAAAEAAAAAQACAAEAAAAEAAEAAQACAAEAAAAEAAIAAQACAAEAAAAEAAMAAQACAAEAAAAEAAQAAQACAAEAAAAEAAUAAQACAAIAAAA=")
 tile_set = SubResource("TileSet_vw7oa")
+
+[node name="Camera2D" type="Camera2D" parent="Airship"]
+ignore_rotation = false
 
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 collision_layer = 2
 motion_mode = 0
 speed = 100.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
+shape = SubResource("RectangleShape2D_1aiqq")
+
 [node name="Panel" type="Node2D" parent="Airship"]
 
-[node name="Distance" type="Label" parent="Airship/Panel"]
+[node name="TimerLabel" type="Label" parent="Airship/Panel"]
+offset_left = -64.0
+offset_top = -72.0
+offset_right = -24.0
+offset_bottom = -62.0
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "123"
+script = ExtResource("8_l3frb")
+
+[node name="DistanceLabel" type="Label" parent="Airship/Panel"]
 offset_left = -65.0
 offset_top = -81.0
 offset_right = -30.0
@@ -80,6 +96,16 @@ theme_override_fonts/font = ExtResource("9_c5h6e")
 theme_override_font_sizes/font_size = 10
 text = "12390"
 script = ExtResource("6_6fgrp")
+
+[node name="VelocityPanel" type="Label" parent="Airship/Panel"]
+offset_left = -16.0
+offset_top = -80.0
+offset_right = 6.0
+offset_bottom = -68.0
+rotation = 1.5708
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+script = ExtResource("9_i2h7o")
 
 [node name="Compass" parent="Airship/Panel" instance=ExtResource("8_4o8pk")]
 
