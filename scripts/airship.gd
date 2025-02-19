@@ -14,11 +14,9 @@ var current_speed: float = 0.0
 var target_speed: float = 0.0
 var controlling := false
 var thrust_value
-var destination: Vector2
 
 func _init() -> void:
 	Global.airship = self
-	destination = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
 
 func _ready():
 	current_thrust_index = thrust_levels.find(0)

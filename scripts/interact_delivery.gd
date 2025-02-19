@@ -2,6 +2,7 @@ extends Node
 
 var interact_parent: Interact
 var airship := Global.airship
+var delivery_manager := Global.delivery_manager
 
 func _ready() -> void:
 	# Connect to parent interact component
@@ -14,8 +15,4 @@ func _on_interact() -> void:
 
 
 func check_destination() -> void:
-	if airship.global_position.distance_to(airship.destination) <= 30:
-		print("Delivery done!")
-		airship.destination = Vector2(randf_range(-5000, 5000), randf_range(-5000, 5000))
-	else:
-		print("Not at the destination...")
+	delivery_manager.attempt_delivery()
