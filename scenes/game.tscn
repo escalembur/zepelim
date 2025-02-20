@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=21 format=4 uid="uid://cskb3ggrsnsph"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
@@ -10,9 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
 [ext_resource type="Script" path="res://scripts/timer_label.gd" id="8_l3frb"]
+[ext_resource type="Theme" uid="uid://c3jaa7wxcfyxr" path="res://resources/manual_theme.tres" id="8_q25xn"]
 [ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="9_c5h6e"]
 [ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
 [ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
+[ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bch2x"]
@@ -45,8 +48,12 @@ size = Vector2(160, 192)
 [node name="World" type="Node2D"]
 texture_filter = 1
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_fbnw6")
+
 [node name="TimeManager" type="Timer" parent="."]
 script = ExtResource("2_24dxf")
+start_time = 10.0
 
 [node name="DeliveryManager" type="Node" parent="."]
 script = ExtResource("2_as3ki")
@@ -80,6 +87,15 @@ speed = 100.0
 shape = SubResource("RectangleShape2D_1aiqq")
 
 [node name="Panel" type="Node2D" parent="Airship"]
+
+[node name="DeliveryLabel" type="Label" parent="Airship/Panel"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -29.0
+offset_bottom = -54.0
+theme = ExtResource("8_q25xn")
+text = "00/00"
+script = ExtResource("9_sor36")
 
 [node name="TimerLabel" type="Label" parent="Airship/Panel"]
 offset_left = -64.0
