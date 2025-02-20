@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var manager = Global.interaction_manager
 
 var can_move := true
+var direction := Vector2.DOWN
+var facing := "down"
 
 var interact_array := []
 var item_carrying : Pickable
@@ -22,9 +24,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta):
-	if !can_move:
-		sprite.stop()
-		return
+	if !can_move: return
 	# Get input direction (world space)
 	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
@@ -34,24 +34,35 @@ func _physics_process(_delta):
 	# Update velocity
 	velocity = fixed_direction * speed
 	
+	# Update facing direction
+	facing = get_facing(input_direction)
+	
 	# Animate the character
-	animate(input_direction)
+	animate()
 	
 	# Move the character
 	move_and_slide()
 
 
-func animate(direction) -> void:
-	if !velocity.length():
-		sprite.stop()
-		return
+func get_facing(input_direction) -> String:
+	# Return facing direction based on input moviment, return currently if not do input moviment
+	if !input_direction.length(): return facing
 	
-	var anim_string
+	direction = sign(input_direction)
+	sprite.flip_h = direction.x > 0
 	if direction.y < 0:
-		anim_string = "up"
+		return "up"
 	elif direction.y > 0:
-		anim_string = "down"
-	else:
-		anim_string = "left"
-		sprite.flip_h = direction.x > 0
+		return "down"
+	return "left"
+
+
+func animate() -> void:
+	var anim_string = "walk_" if velocity.length() else "idle_"
+	
+	if item_carrying:
+		anim_string += "carry_"
+	
+	anim_string += facing
+	
 	sprite.play(anim_string)

@@ -16,9 +16,9 @@ func _ready():
 func _physics_process(_delta) -> void:
 	if picked_up:
 		global_position = player.global_position
-	height = lerp(height, 16.0 * int(picked_up), 0.25)
+	height = lerp(height, 10.0 * int(picked_up), 0.25)
 	$Item.offset.y = offset - height
-	var shadow_scale = 1.0 - height / 48.0
+	var shadow_scale = 1.0 - height / 30.0
 	$Shadow.scale = Vector2(shadow_scale, shadow_scale)
 
 
@@ -32,3 +32,4 @@ func pick_up() -> void:
 	area.monitoring = picked_up
 	picked_up = !picked_up
 	player.item_carrying = self if picked_up else null
+	global_position += player.direction * 10
