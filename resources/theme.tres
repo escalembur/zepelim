@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bl84kxmf30sss"]
+
+[ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="1_5y81o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb3qt"]
+bg_color = Color(0.177853, 0.177853, 0.177853, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_5y81o")
+default_font_size = 10
+MarginContainer/constants/margin_bottom = 16
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+MarginContainer/constants/margin_top = 16
+Panel/styles/panel = SubResource("StyleBoxFlat_yb3qt")

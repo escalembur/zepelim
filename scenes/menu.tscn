@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://4yxs04wsyrfm"]
+
+[ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_d8ut8"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_rroc0"]
+[ext_resource type="PackedScene" uid="uid://cskb3ggrsnsph" path="res://scenes/game.tscn" id="3_ternx"]
+[ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="4_1tn6s"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("quit_button")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8ut8")
+script = ExtResource("2_rroc0")
+game_scene = ExtResource("3_ternx")
+quit_button = NodePath("MainMenu/VBoxContainer/QuitButton")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 2
+offset_left = 112.0
+offset_top = 40.0
+offset_right = 210.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Zepelim"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -18.0
+offset_right = 32.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("previous_menu") instance=ExtResource("4_1tn6s")]
+layout_mode = 1
+previous_menu = NodePath("../MainMenu")
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

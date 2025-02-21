@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://drd6obqg3n5m6"]
+
+[ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_cwkar"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="2_w3xb6"]
+[ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="3_bl2q4"]
+[ext_resource type="PackedScene" uid="uid://4yxs04wsyrfm" path="res://scenes/menu.tscn" id="3_m50p3"]
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("pause_main_menu", "settings_menu")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cwkar")
+script = ExtResource("2_w3xb6")
+pause_main_menu = NodePath("MarginContainer/MainMenu")
+settings_menu = NodePath("MarginContainer/SettingsMenu")
+main_menu = ExtResource("3_m50p3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_cwkar")
+
+[node name="MainMenu" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="MenuButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="SettingsMenu" parent="MarginContainer" node_paths=PackedStringArray("previous_menu") instance=ExtResource("3_bl2q4")]
+visible = false
+layout_mode = 2
+previous_menu = NodePath("../MainMenu")
+
+[connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
