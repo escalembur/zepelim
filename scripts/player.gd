@@ -45,9 +45,9 @@ func moviment() -> void:
 	move_and_slide()
 	
 	# Update facing direction
-	facing = get_facing(input_direction, fixed_direction)
+	facing = get_facing(input_direction)
 
-func get_facing(input, fixed) -> String:
+func get_facing(input) -> String:
 	# Return facing direction based on input moviment,
 	# return currently if not do input moviment
 	if !input.length(): return facing
