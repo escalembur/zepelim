@@ -1,23 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbxbc8r3ddspt"]
+[gd_scene load_steps=4 format=3 uid="uid://cbxbc8r3ddspt"]
 
 [ext_resource type="Script" path="res://scripts/hole.gd" id="1_jeomk"]
 [ext_resource type="PackedScene" uid="uid://bqxnu34y1xe4s" path="res://scenes/interaction_area.tscn" id="1_vfu4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7unbx"]
-
-[sub_resource type="Curve" id="Curve_sklsq"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_qawdj"]
-curve = SubResource("Curve_sklsq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15gn5"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 3.0
-gravity = Vector3(0, -30.735, 0)
-alpha_curve = SubResource("CurveTexture_qawdj")
 
 [node name="Hole" type="Node2D"]
 y_sort_enabled = true
@@ -27,8 +13,3 @@ script = ExtResource("1_jeomk")
 
 [node name="Area2D" type="CollisionShape2D" parent="Interact"]
 shape = SubResource("CircleShape2D_7unbx")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_15gn5")
-trail_enabled = true
