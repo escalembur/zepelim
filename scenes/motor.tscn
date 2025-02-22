@@ -70,7 +70,7 @@ shape = SubResource("RectangleShape2D_l5htv")
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_nduax")
 autoplay = "default"
-frame_progress = 0.0859672
+frame_progress = 0.108389
 
 [node name="Interact" type="Sprite2D" parent="."]
 position = Vector2(0, -24)

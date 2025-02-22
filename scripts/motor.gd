@@ -9,7 +9,7 @@ var integrety := 1.0
 @export var broken_texture: Texture2D
 
 func _process(delta: float) -> void:
-	integrety -= 0.5 * delta
+	integrety -= 0.01 * delta
 	if integrety > 0.5:
 		sprite.texture = fixed_texture
 		smoke.visible = false
