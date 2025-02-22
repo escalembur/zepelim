@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=21 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
 [ext_resource type="Script" path="res://scripts/delivery_manager.gd" id="2_as3ki"]
-[ext_resource type="PackedScene" uid="uid://doj00idw5883t" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
 [ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
@@ -36,9 +36,6 @@ texture_filter = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("1_whgpc")]
-visible = false
-
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_fbnw6")
 
@@ -54,8 +51,7 @@ script = ExtResource("2_as3ki")
 z_index = -50
 texture = ExtResource("8_f3ffd")
 
-[node name="Airship" type="CharacterBody2D" parent="."]
-y_sort_enabled = true
+[node name="Airship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("motors")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vugrx")
@@ -64,6 +60,7 @@ max_speed_reverse = 50.0
 rotation_speed = 1.0
 acceleration = 20.0
 deceleration = 30.0
+motors = [NodePath("Floors/Gondola/Motor"), NodePath("Floors/Gondola/Motor2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
 shape = SubResource("RectangleShape2D_1aiqq")
@@ -74,31 +71,41 @@ shape = SubResource("RectangleShape2D_1aiqq")
 texture = ExtResource("20_8cdw8")
 
 [node name="Panel" type="Node2D" parent="Airship/Floors/Gondola"]
+position = Vector2(0, -64)
 
 [node name="DeliveryLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
-offset_left = -64.0
-offset_top = -64.0
-offset_right = -29.0
-offset_bottom = -54.0
+offset_left = -71.0
+offset_top = -87.0
+offset_right = -36.0
+offset_bottom = -77.0
 theme = SubResource("Theme_766jw")
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
 text = "00/00"
 script = ExtResource("9_sor36")
 
 [node name="TimerLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
-offset_left = -64.0
-offset_top = -72.0
-offset_right = -24.0
-offset_bottom = -62.0
+offset_left = -71.0
+offset_top = -95.0
+offset_right = -31.0
+offset_bottom = -85.0
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("9_c5h6e")
 theme_override_font_sizes/font_size = 10
 text = "123"
 script = ExtResource("8_l3frb")
 
 [node name="DistanceLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
-offset_left = -65.0
-offset_top = -81.0
-offset_right = -30.0
-offset_bottom = -71.0
+offset_left = -72.0
+offset_top = -104.0
+offset_right = -37.0
+offset_bottom = -94.0
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("9_c5h6e")
 theme_override_font_sizes/font_size = 10
 text = "12390"
@@ -115,26 +122,34 @@ theme_override_font_sizes/font_size = 10
 script = ExtResource("9_i2h7o")
 
 [node name="Compass" parent="Airship/Floors/Gondola/Panel" instance=ExtResource("8_4o8pk")]
+visible = false
 
 [node name="Radar" parent="Airship/Floors/Gondola/Panel" instance=ExtResource("9_ddyvd")]
+position = Vector2(25, -64)
 
 [node name="ControlPanel" parent="Airship/Floors/Gondola" instance=ExtResource("5_c0fbq")]
-position = Vector2(0, -69)
+position = Vector2(0, -128)
 
 [node name="DeliveryButton" parent="Airship/Floors/Gondola" instance=ExtResource("10_vov0c")]
-position = Vector2(0, 48)
+position = Vector2(0, 32)
 
 [node name="Motor" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
-position = Vector2(-112, 64)
+position = Vector2(-128, 64)
 
 [node name="Motor2" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
-position = Vector2(112, 64)
+position = Vector2(128, 64)
 
 [node name="Hull" type="Sprite2D" parent="Airship/Floors"]
 visible = false
 texture = ExtResource("21_4tiq3")
 
+[node name="Area2D" type="Area2D" parent="Airship/Floors/Hull"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Hull/Area2D"]
+polygon = PackedVector2Array(0, -336, 96, -296, 168, -208, 200, -112, 216, 0, 200, 128, 152, 232, 88, 304, 0, 336, -96, 296, -160, 216, -200, 112, -216, 0, -192, -136, -152, -232, -80, -304)
+
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
+position = Vector2(0, -80)
 collision_layer = 2
 motion_mode = 0
 speed = 100.0
