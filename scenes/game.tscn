@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=25 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
-[ext_resource type="PackedScene" uid="uid://drd6obqg3n5m6" path="res://scenes/pause_menu.tscn" id="1_whgpc"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
 [ext_resource type="Script" path="res://scripts/delivery_manager.gd" id="2_as3ki"]
@@ -16,9 +15,13 @@
 [ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
 [ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
-[ext_resource type="PackedScene" path="res://scenes/motor.tscn" id="18_hemfu"]
+[ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
+[ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
+[ext_resource type="PackedScene" uid="uid://pv2jbdinirgc" path="res://scenes/tape.tscn" id="20_2tguh"]
 [ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
+[ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
+[ext_resource type="PackedScene" path="res://scenes/interaction_manager.tscn" id="22_130ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
 size = Vector2(160, 192)
@@ -148,6 +151,8 @@ texture = ExtResource("21_4tiq3")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Hull/Area2D"]
 polygon = PackedVector2Array(0, -336, 96, -296, 168, -208, 200, -112, 216, 0, 200, 128, 152, 232, 88, 304, 0, 336, -96, 296, -160, 216, -200, 112, -216, 0, -192, -136, -152, -232, -80, -304)
 
+[node name="InteractionManager" parent="Airship" instance=ExtResource("22_130ir")]
+
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 position = Vector2(0, -80)
 collision_layer = 2
@@ -156,3 +161,12 @@ speed = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="Airship/Player"]
 ignore_rotation = false
+
+[node name="Lamp" parent="Airship" instance=ExtResource("19_jro62")]
+position = Vector2(0, 63)
+
+[node name="Tape" parent="Airship" instance=ExtResource("20_2tguh")]
+position = Vector2(-18, 63)
+
+[node name="Wrench" parent="Airship" instance=ExtResource("21_dlfy8")]
+position = Vector2(18, 63)

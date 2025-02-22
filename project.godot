@@ -52,9 +52,7 @@ pause={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
-2d_render/canvas_textures/default_texture_filter=0
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.210125, 0.291417, 0.488727, 1)

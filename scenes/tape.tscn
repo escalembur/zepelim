@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqvp014kcm0d6"]
+[gd_scene load_steps=6 format=3 uid="uid://pv2jbdinirgc"]
 
 [ext_resource type="Script" path="res://scripts/pickable.gd" id="1_igldx"]
-[ext_resource type="PackedScene" uid="uid://bqxnu34y1xe4s" path="res://scenes/interaction_area.tscn" id="2_d75a0"]
-[ext_resource type="Texture2D" uid="uid://bunyj1ldixhtn" path="res://sprites/shadow.png" id="3_y6lfy"]
+[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interaction_area.tscn" id="2_d75a0"]
 [ext_resource type="Texture2D" uid="uid://csrlq7stnc7aa" path="res://sprites/items.png" id="4_os08q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rexls"]
@@ -20,9 +19,6 @@ position = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
 shape = SubResource("CircleShape2D_rexls")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("3_y6lfy")
 
 [node name="Item" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_be5bq")

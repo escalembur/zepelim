@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var manager = Global.interaction_manager
 
 var can_move := true
-var direction := Vector2.DOWN
 var facing := "down"
 
 var last_interact : InteractionArea
@@ -53,7 +52,6 @@ func get_facing(input, fixed) -> String:
 	# return currently if not do input moviment
 	if !input.length(): return facing
 	
-	direction = fixed
 	sprite.flip_h = input.x > 0
 	if input.y < 0:
 		return "up"

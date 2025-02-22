@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://bd484q5wnvm5t"]
+[gd_scene load_steps=41 format=3 uid="uid://bd484q5wnvm5t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g8s1e"]
-[ext_resource type="Texture2D" uid="uid://bunyj1ldixhtn" path="res://sprites/shadow.png" id="2_4ml4i"]
 [ext_resource type="Texture2D" uid="uid://dwn2cvu7oaicv" path="res://sprites/playersheet.png" id="3_0q4ne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfqwt"]
@@ -330,9 +329,6 @@ script = ExtResource("1_g8s1e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_rfqwt")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("2_4ml4i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oi243")
