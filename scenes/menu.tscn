@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_d8ut8"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_rroc0"]
-[ext_resource type="PackedScene" uid="uid://cskb3ggrsnsph" path="res://scenes/game.tscn" id="3_ternx"]
+[ext_resource type="PackedScene" uid="uid://cskb3ggrsnsph" path="res://scenes/game.tscn" id="3_aw670"]
 [ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="4_1tn6s"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("quit_button")]
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_d8ut8")
 script = ExtResource("2_rroc0")
-game_scene = ExtResource("3_ternx")
+game_scene = ExtResource("3_aw670")
 quit_button = NodePath("MainMenu/VBoxContainer/QuitButton")
 
 [node name="MainMenu" type="Control" parent="."]

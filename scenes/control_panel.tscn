@@ -1,28 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://doj00idw5883t"]
+[gd_scene load_steps=7 format=3 uid="uid://cox0py5tss8ai"]
 
-[ext_resource type="PackedScene" uid="uid://bqxnu34y1xe4s" path="res://scenes/interaction_area.tscn" id="2_lmoav"]
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_gait0"]
+[ext_resource type="Script" path="res://scripts/interact.gd" id="2_irvmc"]
 [ext_resource type="Script" path="res://scripts/airship_control.gd" id="3_vpcno"]
 [ext_resource type="Texture2D" uid="uid://bsarrifo0v8oc" path="res://sprites/control.png" id="4_fue4s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
-size = Vector2(32, 18)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejh8x"]
+atlas = ExtResource("1_gait0")
+region = Rect2(304, 32, 16, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6fikq"]
-radius = 24.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
+size = Vector2(32, 24)
 
 [node name="ControlPanel" type="StaticBody2D"]
-position = Vector2(0, -5)
-script = ExtResource("3_vpcno")
+texture_filter = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_adu1i")
+[node name="Interact" type="Sprite2D" parent="."]
+position = Vector2(0, -23)
+texture = SubResource("AtlasTexture_ejh8x")
+script = ExtResource("2_irvmc")
+
+[node name="AirshipControl" type="Node" parent="Interact"]
+script = ExtResource("3_vpcno")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_fue4s")
-offset = Vector2(0, -5)
 
-[node name="Interact" parent="." instance=ExtResource("2_lmoav")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
-shape = SubResource("CircleShape2D_6fikq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_adu1i")

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
+[ext_resource type="PackedScene" uid="uid://drd6obqg3n5m6" path="res://scenes/pause_menu.tscn" id="1_whgpc"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
 [ext_resource type="Script" path="res://scripts/delivery_manager.gd" id="2_as3ki"]
-[ext_resource type="PackedScene" uid="uid://drd6obqg3n5m6" path="res://scenes/pause_menu.tscn" id="4_24k8j"]
-[ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="PackedScene" uid="uid://doj00idw5883t" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
 [ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
 [ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
-[ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
+[ext_resource type="PackedScene" path="res://scenes/motor.tscn" id="18_hemfu"]
 [ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
 
@@ -36,7 +36,7 @@ texture_filter = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("4_24k8j")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("1_whgpc")]
 visible = false
 
 [node name="GameManager" type="Node" parent="."]
@@ -133,8 +133,6 @@ position = Vector2(112, 64)
 [node name="Hull" type="Sprite2D" parent="Airship/Floors"]
 visible = false
 texture = ExtResource("21_4tiq3")
-
-[node name="InteractionManager" parent="Airship" instance=ExtResource("4_biuy4")]
 
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 collision_layer = 2

@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_cwkar"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="2_w3xb6"]
+[ext_resource type="PackedScene" uid="uid://4yxs04wsyrfm" path="res://scenes/menu.tscn" id="3_4hrgo"]
 [ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="3_bl2q4"]
-[ext_resource type="PackedScene" uid="uid://4yxs04wsyrfm" path="res://scenes/menu.tscn" id="3_m50p3"]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("pause_main_menu", "settings_menu")]
 texture_filter = 1
@@ -17,7 +17,7 @@ theme = ExtResource("1_cwkar")
 script = ExtResource("2_w3xb6")
 pause_main_menu = NodePath("MarginContainer/MainMenu")
 settings_menu = NodePath("MarginContainer/SettingsMenu")
-main_menu = ExtResource("3_m50p3")
+main_menu = ExtResource("3_4hrgo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
