@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_adu1i")
 texture = ExtResource("4_fue4s")
 offset = Vector2(0, -5)
 
-[node name="InteractionArea" parent="." instance=ExtResource("2_lmoav")]
+[node name="Interact" parent="." instance=ExtResource("2_lmoav")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
 shape = SubResource("CircleShape2D_6fikq")

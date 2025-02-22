@@ -25,6 +25,9 @@ func _process(_delta) -> void:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		button.global_position = active_areas[0].global_position
 		button.show()
+	elif player.last_interact:
+		button.global_position = player.last_interact.global_position
+		button.show()
 	else:
 		button.hide()
 
