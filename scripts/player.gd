@@ -4,12 +4,15 @@ extends CharacterBody2D
 @export var speed := 300.0
 
 @onready var sprite = $AnimatedSprite2D
-@onready var manager = Global.interaction_manager
+@onready var manager = Global.interact_manager
+	
+@export var floor := Global.Floor.GONDOLA
 
 var can_move := true
+var direction := Vector2.DOWN
 var facing := "down"
 
-var last_interact : InteractionArea
+var softlock_prevent : Interact
 var item_carrying : Pickable
 
 func _init() -> void:
@@ -17,8 +20,8 @@ func _init() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		if last_interact && manager.active_areas.find(last_interact) == -1:
-			last_interact.interact.call()
+		if softlock_prevent && manager.active_areas.find(softlock_prevent) == -1:
+			softlock_prevent.interacted.emit()
 		if item_carrying and manager.active_areas.is_empty():
 			item_carrying.pick_up()
 
@@ -45,13 +48,17 @@ func moviment() -> void:
 	move_and_slide()
 	
 	# Update facing direction
-	facing = get_facing(input_direction)
+	facing = get_facing(input_direction, fixed_direction)
+	
+	# Update raycast direction
+	 #* fixed_direction
 
-func get_facing(input) -> String:
+func get_facing(input, fixed) -> String:
 	# Return facing direction based on input moviment,
 	# return currently if not do input moviment
 	if !input.length(): return facing
 	
+	direction = fixed
 	sprite.flip_h = input.x > 0
 	if input.y < 0:
 		return "up"

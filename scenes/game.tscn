@@ -1,14 +1,12 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=25 format=3 uid="uid://cskb3ggrsnsph"]
-=======
-[gd_scene load_steps=24 format=3 uid="uid://cskb3ggrsnsph"]
->>>>>>> Stashed changes
+[gd_scene load_steps=31 format=3 uid="uid://dwtb72ysyia2o"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
 [ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
 [ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
 [ext_resource type="Script" path="res://scripts/delivery_manager.gd" id="2_as3ki"]
+[ext_resource type="Script" path="res://scripts/interact_manager.gd" id="4_qgsei"]
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="5_brao4"]
 [ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
 [ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
@@ -22,19 +20,19 @@
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
 [ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
-<<<<<<< Updated upstream
+[ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
 [ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
 [ext_resource type="PackedScene" uid="uid://pv2jbdinirgc" path="res://scenes/tape.tscn" id="20_2tguh"]
-=======
-[ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
->>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
 [ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
-[ext_resource type="PackedScene" path="res://scenes/interaction_manager.tscn" id="22_130ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
 size = Vector2(160, 192)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yebr2"]
+radius = 3.0
+height = 54.0
 
 [sub_resource type="Theme" id="Theme_766jw"]
 default_font = ExtResource("9_c5h6e")
@@ -43,6 +41,10 @@ MarginContainer/constants/margin_bottom = 4
 MarginContainer/constants/margin_left = 4
 MarginContainer/constants/margin_right = 4
 MarginContainer/constants/margin_top = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af3c1"]
+atlas = ExtResource("5_brao4")
+region = Rect2(320, 64, 16, 16)
 
 [node name="World" type="Node2D"]
 texture_filter = 1
@@ -60,11 +62,15 @@ time_per_delivery = 30.0
 [node name="DeliveryManager" type="Node" parent="."]
 script = ExtResource("2_as3ki")
 
+[node name="InteractManager" type="Node" parent="."]
+script = ExtResource("4_qgsei")
+
 [node name="Map" type="Sprite2D" parent="."]
-z_index = -50
+z_index = -100
 texture = ExtResource("8_f3ffd")
 
 [node name="Airship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("motors")]
+y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vugrx")
@@ -82,6 +88,7 @@ metadata/_edit_lock_ = true
 [node name="Floors" type="Node2D" parent="Airship"]
 
 [node name="Gondola" type="Sprite2D" parent="Airship/Floors"]
+z_index = -99
 texture = ExtResource("20_8cdw8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Gondola"]
@@ -89,8 +96,13 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Gondola/StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(0, 149, 27, 144, 47, 133, 77, 103, 77, 51, 72, 51, 72, 33, 73, 33, 73, 32, 85, 32, 85, 33, 86, 33, 86, 34, 87, 34, 87, 35, 88, 35, 88, 53, 96, 67, 103, 73, 115, 75, 137, 66, 141, 56, 141, -40, 88, -40, 88, -18, 88, -1, 72, -1, 72, -20, 73, -20, 73, -21, 77, -21, 77, -83, 78, -83, 78, -84, 87, -84, 87, -83, 88, -83, 88, -80, 113, -80, 113, -91, 96, -91, 96, -92, 95, -92, 95, -104, 88, -104, 88, -106, 77, -106, 77, -116, 67, -120, 42, -139, 18, -149, 0, -153, -29, -145, -49, -134, -66, -120, -77, -116, -77, -21, -73, -21, -73, -20, -72, -20, -72, 0, -88, 0, -88, -41, -141, -41, -141, 57, -130, 74, -107, 74, -88, 53, -88, 35, -85, 32, -73, 32, -73, 33, -72, 33, -72, 52, -77, 52, -77, 104, -60, 122, -43, 134, -24, 145)
+polygon = PackedVector2Array(0, 149, 27, 144, 47, 133, 77, 103, 77, 51, 72, 51, 72, 33, 73, 33, 73, 32, 85, 32, 85, 33, 86, 33, 86, 34, 87, 34, 87, 35, 88, 35, 88, 53, 96, 67, 103, 73, 115, 75, 137, 66, 141, 56, 141, -40, 88, -40, 88, -18, 88, 0, 72, 0, 72, -20, 73, -20, 73, -21, 77, -21, 77, -83, 78, -83, 78, -84, 87, -84, 87, -83, 88, -83, 88, -80, 113, -80, 113, -91, 96, -91, 96, -92, 95, -92, 95, -104, 88, -104, 88, -106, 77, -106, 77, -116, 67, -120, 42, -139, 18, -149, 0, -153, -29, -145, -49, -134, -66, -120, -77, -116, -77, -21, -73, -21, -73, -20, -72, -20, -72, 0, -88, 0, -88, -41, -141, -41, -141, 57, -130, 74, -107, 74, -88, 53, -88, 35, -85, 32, -73, 32, -73, 33, -72, 33, -72, 52, -77, 52, -77, 104, -60, 122, -43, 134, -24, 145)
 metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airship/Floors/Gondola/StaticBody2D"]
+position = Vector2(0.5, 60)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yebr2")
 
 [node name="Panel" type="Node2D" parent="Airship/Floors/Gondola"]
 position = Vector2(0, -64)
@@ -166,6 +178,7 @@ position = Vector2(128, 64)
 
 [node name="Hull" type="Sprite2D" parent="Airship/Floors"]
 visible = false
+z_index = -98
 texture = ExtResource("21_4tiq3")
 script = ExtResource("18_orq0k")
 spawn_scene = ExtResource("18_0ltu5")
@@ -185,14 +198,6 @@ polygon = PackedVector2Array(0, -316, 86, -283, 149, -202, 183, -108, 196, -1, 1
 [node name="Stairs" parent="Airship/Floors" instance=ExtResource("17_uo367")]
 position = Vector2(-62, 98)
 
-[node name="Interact" parent="Airship/Floors/Stairs" index="0"]
-floor = 1
-
-[node name="InteractStairs" parent="Airship/Floors/Stairs/Interact" index="0" node_paths=PackedStringArray("hull")]
-hull = NodePath("../../../Hull")
-
-[node name="InteractionManager" parent="Airship" instance=ExtResource("22_130ir")]
-
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 position = Vector2(0, -80)
 collision_layer = 2
@@ -203,15 +208,16 @@ speed = 100.0
 [node name="Camera2D" type="Camera2D" parent="Airship/Player"]
 ignore_rotation = false
 
-<<<<<<< Updated upstream
 [node name="Lamp" parent="Airship" instance=ExtResource("19_jro62")]
-position = Vector2(0, 63)
+position = Vector2(0, 65)
 
 [node name="Tape" parent="Airship" instance=ExtResource("20_2tguh")]
-position = Vector2(-18, 63)
+position = Vector2(-18, 65)
 
 [node name="Wrench" parent="Airship" instance=ExtResource("21_dlfy8")]
-position = Vector2(18, 63)
-=======
-[editable path="Airship/Floors/Stairs"]
->>>>>>> Stashed changes
+position = Vector2(18, 65)
+
+[node name="Button" type="Sprite2D" parent="Airship"]
+visible = false
+texture = SubResource("AtlasTexture_af3c1")
+offset = Vector2(1, -27)

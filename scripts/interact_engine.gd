@@ -1,7 +1,11 @@
 extends Node
 
 var interact_parent: Interact
-var airship := Global.airship
+@onready var airship := Global.airship
+@onready var player := Global.player
+
+var expected_item := "Wrench"
+
 @export var motor: Motor
 
 func _ready() -> void:
@@ -11,4 +15,6 @@ func _ready() -> void:
 
 
 func _on_interact() -> void:
-	motor.fix_motor()
+	if !player.item_carrying: return
+	if player.item_carrying.item_name == expected_item:
+		motor.fix_motor()

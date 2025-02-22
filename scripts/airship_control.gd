@@ -16,3 +16,7 @@ func _on_interact() -> void:
 	# Toggle between player movement and airship movement
 	player.can_move = !player.can_move
 	airship.controlling = !airship.controlling
+	var in_control
+	if airship.controlling:
+		in_control = interact_parent
+	player.softlock_prevent = in_control

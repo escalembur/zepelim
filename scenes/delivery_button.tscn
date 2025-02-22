@@ -1,28 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://doj4a7ovac6pm"]
+[gd_scene load_steps=7 format=3 uid="uid://doj4a7ovac6pm"]
 
-[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_cwfr8"]
-[ext_resource type="Script" path="res://scripts/interact.gd" id="2_qd10p"]
+[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_3jgin"]
 [ext_resource type="Script" path="res://scripts/interact_delivery.gd" id="3_gd66n"]
 [ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="4_eebbx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1f58"]
-atlas = ExtResource("1_cwfr8")
-region = Rect2(304, 32, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb4si"]
+radius = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxtuh"]
 atlas = ExtResource("4_eebbx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3acbu"]
-size = Vector2(10, 17)
+size = Vector2(10, 12)
 
 [node name="DeliveryButton" type="StaticBody2D"]
 texture_filter = 1
 
-[node name="Interact" type="Sprite2D" parent="."]
-position = Vector2(1, -27)
-texture = SubResource("AtlasTexture_y1f58")
-script = ExtResource("2_qd10p")
+[node name="Interact" parent="." instance=ExtResource("1_3jgin")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_hb4si")
 
 [node name="DeliveryInteract" type="Node" parent="Interact"]
 script = ExtResource("3_gd66n")
@@ -32,5 +31,5 @@ position = Vector2(0, -13)
 texture = SubResource("AtlasTexture_nxtuh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8.5)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_3acbu")

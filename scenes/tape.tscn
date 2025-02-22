@@ -1,24 +1,27 @@
 [gd_scene load_steps=6 format=3 uid="uid://pv2jbdinirgc"]
 
 [ext_resource type="Script" path="res://scripts/pickable.gd" id="1_igldx"]
-[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interaction_area.tscn" id="2_d75a0"]
+[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="2_d75a0"]
 [ext_resource type="Texture2D" uid="uid://csrlq7stnc7aa" path="res://sprites/items.png" id="4_os08q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rexls"]
-radius = 11.0
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be5bq"]
 atlas = ExtResource("4_os08q")
 region = Rect2(32, 0, 16, 16)
 
 [node name="Tape" type="Node2D"]
-script = ExtResource("1_igldx")
+texture_filter = 1
 
 [node name="Interact" parent="." instance=ExtResource("2_d75a0")]
 position = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
 shape = SubResource("CircleShape2D_rexls")
+
+[node name="PickUp" type="Node" parent="Interact"]
+script = ExtResource("1_igldx")
 
 [node name="Item" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_be5bq")

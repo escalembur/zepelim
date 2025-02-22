@@ -1,4 +1,4 @@
-class_name Interact
+class_name Interact_
 extends Sprite2D
 
 
@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if player.get_collision_mask_value(5) && floor == Floor.GONDOLA:
-			return
+		return
 	if on_range():
 		if event.is_action_pressed("interact"):
 			interacted.emit()

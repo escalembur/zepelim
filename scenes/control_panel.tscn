@@ -1,24 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://cox0py5tss8ai"]
+[gd_scene load_steps=6 format=3 uid="uid://cox0py5tss8ai"]
 
-[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_gait0"]
-[ext_resource type="Script" path="res://scripts/interact.gd" id="2_irvmc"]
+[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_5svme"]
 [ext_resource type="Script" path="res://scripts/airship_control.gd" id="3_vpcno"]
 [ext_resource type="Texture2D" uid="uid://bsarrifo0v8oc" path="res://sprites/control.png" id="4_fue4s"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ejh8x"]
-atlas = ExtResource("1_gait0")
-region = Rect2(304, 32, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgcu8"]
+radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
-size = Vector2(32, 24)
+size = Vector2(32, 17)
 
 [node name="ControlPanel" type="StaticBody2D"]
 texture_filter = 1
 
-[node name="Interact" type="Sprite2D" parent="."]
-position = Vector2(0, -23)
-texture = SubResource("AtlasTexture_ejh8x")
-script = ExtResource("2_irvmc")
+[node name="Interact" parent="." instance=ExtResource("1_5svme")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_mgcu8")
 
 [node name="AirshipControl" type="Node" parent="Interact"]
 script = ExtResource("3_vpcno")
@@ -27,4 +26,5 @@ script = ExtResource("3_vpcno")
 texture = ExtResource("4_fue4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_adu1i")
