@@ -13,6 +13,9 @@ extends CharacterBody2D
 @export_group("Motors")
 @export var motors: Array[Motor]                # Assign motors in inspector
 
+var altitude := 100000.0
+var holes: Array[Node2D]
+
 var thrust_levels = [-1, 0, 1, 2, 3]  # Reverse, Stop, Slow, Normal, Fast
 var current_thrust_index = 1          # Starts at neutral (0 - Stop)
 var current_speed: float = 0.0
@@ -40,6 +43,7 @@ func _physics_process(delta):
 	
 	# Calculate motor efficiency
 	var efficiency = calculate_motor_efficiency()
+	altitude -= holes.size() * 10.0 * delta
 	
 	# Apply efficiency to movement parameters
 	var effective_rotation = rotation_speed * efficiency

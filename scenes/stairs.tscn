@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3sme3um5uy8e"]
+
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="1_g5ljd"]
+[ext_resource type="Script" path="res://scripts/interact.gd" id="2_ebron"]
+[ext_resource type="Script" path="res://scripts/interact_stairs.gd" id="3_3urly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r3df"]
+atlas = ExtResource("1_g5ljd")
+region = Rect2(320, 192, 16, 16)
+
+[node name="Stairs" type="Node2D"]
+
+[node name="Interact" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
+texture = SubResource("AtlasTexture_3r3df")
+script = ExtResource("2_ebron")
+
+[node name="InteractStairs" type="Node" parent="Interact"]
+script = ExtResource("3_3urly")

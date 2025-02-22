@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=25 format=3 uid="uid://cskb3ggrsnsph"]
-=======
-[gd_scene load_steps=24 format=3 uid="uid://cskb3ggrsnsph"]
->>>>>>> Stashed changes
+[gd_scene load_steps=23 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -19,19 +15,11 @@
 [ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
 [ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
-[ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
 [ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
-<<<<<<< Updated upstream
-[ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
-[ext_resource type="PackedScene" uid="uid://pv2jbdinirgc" path="res://scenes/tape.tscn" id="20_2tguh"]
-=======
 [ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
->>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
-[ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
-[ext_resource type="PackedScene" path="res://scenes/interaction_manager.tscn" id="22_130ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
 size = Vector2(160, 192)
@@ -61,7 +49,6 @@ time_per_delivery = 30.0
 script = ExtResource("2_as3ki")
 
 [node name="Map" type="Sprite2D" parent="."]
-z_index = -50
 texture = ExtResource("8_f3ffd")
 
 [node name="Airship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("motors")]
@@ -77,20 +64,11 @@ motors = [NodePath("Floors/Gondola/Motor"), NodePath("Floors/Gondola/Motor2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
 shape = SubResource("RectangleShape2D_1aiqq")
-metadata/_edit_lock_ = true
 
 [node name="Floors" type="Node2D" parent="Airship"]
 
 [node name="Gondola" type="Sprite2D" parent="Airship/Floors"]
 texture = ExtResource("20_8cdw8")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Gondola"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Gondola/StaticBody2D"]
-build_mode = 1
-polygon = PackedVector2Array(0, 149, 27, 144, 47, 133, 77, 103, 77, 51, 72, 51, 72, 33, 73, 33, 73, 32, 85, 32, 85, 33, 86, 33, 86, 34, 87, 34, 87, 35, 88, 35, 88, 53, 96, 67, 103, 73, 115, 75, 137, 66, 141, 56, 141, -40, 88, -40, 88, -18, 88, -1, 72, -1, 72, -20, 73, -20, 73, -21, 77, -21, 77, -83, 78, -83, 78, -84, 87, -84, 87, -83, 88, -83, 88, -80, 113, -80, 113, -91, 96, -91, 96, -92, 95, -92, 95, -104, 88, -104, 88, -106, 77, -106, 77, -116, 67, -120, 42, -139, 18, -149, 0, -153, -29, -145, -49, -134, -66, -120, -77, -116, -77, -21, -73, -21, -73, -20, -72, -20, -72, 0, -88, 0, -88, -41, -141, -41, -141, 57, -130, 74, -107, 74, -88, 53, -88, 35, -85, 32, -73, 32, -73, 33, -72, 33, -72, 52, -77, 52, -77, 104, -60, 122, -43, 134, -24, 145)
-metadata/_edit_lock_ = true
 
 [node name="Panel" type="Node2D" parent="Airship/Floors/Gondola"]
 position = Vector2(0, -64)
@@ -103,10 +81,7 @@ offset_bottom = -77.0
 theme = SubResource("Theme_766jw")
 theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
 theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("9_c5h6e")
-theme_override_font_sizes/font_size = 10
+theme_override_constants/outline_size = 4
 text = "00/00"
 script = ExtResource("9_sor36")
 
@@ -165,53 +140,24 @@ position = Vector2(-128, 64)
 position = Vector2(128, 64)
 
 [node name="Hull" type="Sprite2D" parent="Airship/Floors"]
-visible = false
 texture = ExtResource("21_4tiq3")
 script = ExtResource("18_orq0k")
 spawn_scene = ExtResource("18_0ltu5")
-spawn_rate = 5.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Hull"]
-collision_layer = 16
+[node name="SpawnArea" type="Area2D" parent="Airship/Floors/Hull"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Hull/StaticBody2D"]
-build_mode = 1
-polygon = PackedVector2Array(0, -316, 86, -283, 149, -202, 183, -108, 196, -1, 179, 121, 141, 220, 78, 288, -1, 316, -87, 283, -147, 210, -183, 106, -195, 2, -178, -130, -138, -222, -68, -295)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Hull/SpawnArea"]
+polygon = PackedVector2Array(0, -336, 96, -296, 168, -208, 200, -112, 216, 0, 200, 128, 152, 232, 88, 304, 0, 336, -96, 296, -160, 216, -200, 112, -216, 0, -192, -136, -152, -232, -80, -304)
 
 [node name="Timer" type="Timer" parent="Airship/Floors/Hull"]
 
 [node name="Hole" parent="Airship/Floors/Hull" instance=ExtResource("18_0ltu5")]
 
-[node name="Stairs" parent="Airship/Floors" instance=ExtResource("17_uo367")]
-position = Vector2(-62, 98)
-
-[node name="Interact" parent="Airship/Floors/Stairs" index="0"]
-floor = 1
-
-[node name="InteractStairs" parent="Airship/Floors/Stairs/Interact" index="0" node_paths=PackedStringArray("hull")]
-hull = NodePath("../../../Hull")
-
-[node name="InteractionManager" parent="Airship" instance=ExtResource("22_130ir")]
-
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
 position = Vector2(0, -80)
 collision_layer = 2
-collision_mask = 16
 motion_mode = 0
 speed = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="Airship/Player"]
 ignore_rotation = false
-
-<<<<<<< Updated upstream
-[node name="Lamp" parent="Airship" instance=ExtResource("19_jro62")]
-position = Vector2(0, 63)
-
-[node name="Tape" parent="Airship" instance=ExtResource("20_2tguh")]
-position = Vector2(-18, 63)
-
-[node name="Wrench" parent="Airship" instance=ExtResource("21_dlfy8")]
-position = Vector2(18, 63)
-=======
-[editable path="Airship/Floors/Stairs"]
->>>>>>> Stashed changes
