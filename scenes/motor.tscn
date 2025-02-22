@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://b28va3pgdpvfy"]
+
+[ext_resource type="Script" path="res://scripts/motor.gd" id="1_fku3r"]
+[ext_resource type="Script" path="res://scripts/interact.gd" id="2_iwrpn"]
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="3_2rtll"]
+[ext_resource type="Script" path="res://scripts/interact_engine.gd" id="3_516xx"]
+[ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="4_u0qrs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mj75"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(160, 72, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bfue"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(176, 72, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq7dn"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(160, 72, 16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5htv"]
+size = Vector2(16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5qyf"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(192, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoqtl"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(192, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcsmh"]
+atlas = ExtResource("4_u0qrs")
+region = Rect2(192, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nduax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5qyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoqtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcsmh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf5yl"]
+atlas = ExtResource("3_2rtll")
+region = Rect2(320, 192, 16, 16)
+
+[node name="Motor" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_fku3r")
+fixed_texture = SubResource("AtlasTexture_8mj75")
+broken_texture = SubResource("AtlasTexture_6bfue")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_nq7dn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l5htv")
+
+[node name="SmokeAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_nduax")
+autoplay = "default"
+frame_progress = 0.0859672
+
+[node name="Interact" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = SubResource("AtlasTexture_sf5yl")
+script = ExtResource("2_iwrpn")
+
+[node name="InteractEngine" type="Node" parent="Interact" node_paths=PackedStringArray("motor")]
+script = ExtResource("3_516xx")
+motor = NodePath("../..")

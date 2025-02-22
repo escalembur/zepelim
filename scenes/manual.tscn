@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccwk0um5l8e1m"]
+
+[ext_resource type="Theme" uid="uid://c3jaa7wxcfyxr" path="res://resources/manual_theme.tres" id="1_8f605"]
+
+[node name="Manual" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8f605")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Hi, Traveler!" type="TabBar" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Hi, Traveler!"]
+layout_mode = 2
+offset_right = 312.0
+offset_bottom = 154.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Hi, Traveler!/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Hi, Traveler!/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_8f605")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/TabContainer/Hi, Traveler!/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndfasdasdoinasoidnaoisndasdssdfinmasoidfnaoisdnfoaisndfoiasndfoiasndf"
+fit_content = true

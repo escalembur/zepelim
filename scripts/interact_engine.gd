@@ -2,6 +2,7 @@ extends Node
 
 var interact_parent: Interact
 var airship := Global.airship
+@export var motor: Motor
 
 func _ready() -> void:
 	# Connect to parent interact component
@@ -10,4 +11,4 @@ func _ready() -> void:
 
 
 func _on_interact() -> void:
-	pass
+	motor.fix_motor()
