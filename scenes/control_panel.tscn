@@ -1,17 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://cox0py5tss8ai"]
+[gd_scene load_steps=10 format=3 uid="uid://cox0py5tss8ai"]
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_5svme"]
+[ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_dgulb"]
+[ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="2_pxoi3"]
 [ext_resource type="Script" path="res://scripts/airship_control.gd" id="3_vpcno"]
-[ext_resource type="Texture2D" uid="uid://bsarrifo0v8oc" path="res://sprites/control.png" id="4_fue4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giip6"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(54, 100, 34, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76rh"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(6, 100, 34, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgcu8"]
 radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auynv"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(6, 100, 34, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
 size = Vector2(32, 17)
 
 [node name="ControlPanel" type="StaticBody2D"]
 texture_filter = 1
+script = ExtResource("1_dgulb")
+in_use_texture = SubResource("AtlasTexture_giip6")
+out_use_texture = SubResource("AtlasTexture_k76rh")
 
 [node name="Interact" parent="." instance=ExtResource("1_5svme")]
 
@@ -23,7 +39,7 @@ shape = SubResource("CircleShape2D_mgcu8")
 script = ExtResource("3_vpcno")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_fue4s")
+texture = SubResource("AtlasTexture_auynv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.5)

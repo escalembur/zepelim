@@ -2,12 +2,15 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed := 300.0
+@export var floor := Global.Floor.GONDOLA
+@export var sfx_steps : Array[AudioStreamWAV]
 
 @onready var sprite = $AnimatedSprite2D
+@onready var sfx_channel := $AudioStreamPlayer
 @onready var manager = Global.interact_manager
-	
-@export var floor := Global.Floor.GONDOLA
 
+var input_direction := Vector2.ZERO
+var fixed_direction := Vector2.ZERO
 var can_move := true
 var direction := Vector2.DOWN
 var facing := "down"
@@ -33,13 +36,13 @@ func _physics_process(_delta):
 	
 func moviment() -> void:
 	if !can_move:
-		velocity = Vector2.ZERO
+		input_direction = Vector2.ZERO
 		return
 	# Get input direction (world space)
-	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# Adjust input direction to ignore parent's rotation:
-	var fixed_direction = input_direction.rotated(get_parent().global_rotation)
+	fixed_direction = input_direction.rotated(get_parent().global_rotation)
 	
 	# Update velocity
 	velocity = fixed_direction * speed
@@ -48,26 +51,29 @@ func moviment() -> void:
 	move_and_slide()
 	
 	# Update facing direction
-	facing = get_facing(input_direction, fixed_direction)
+	facing = get_facing()
 	
-	# Update raycast direction
-	 #* fixed_direction
-
-func get_facing(input, fixed) -> String:
+func get_facing() -> String:
 	# Return facing direction based on input moviment,
 	# return currently if not do input moviment
-	if !input.length(): return facing
+	if !input_direction.length(): return facing
 	
-	direction = fixed
-	sprite.flip_h = input.x > 0
-	if input.y < 0:
+	# Play step sfx
+	if !sfx_channel.playing:
+		sfx_channel.stream = sfx_steps.pick_random()
+		sfx_channel.play()
+	
+	# Update for sprite animation
+	direction = fixed_direction
+	sprite.flip_h = input_direction.x > 0
+	if input_direction.y < 0:
 		return "up"
-	elif input.y > 0:
+	elif input_direction.y > 0:
 		return "down"
 	return "left"
 
 func animate() -> void:
-	var anim_string = "walk_" if velocity.length() else "idle_"
+	var anim_string = "walk_" if input_direction.length() else "idle_"
 	
 	if item_carrying:
 		anim_string += "carry_"

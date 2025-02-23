@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvo2qeixxq8pu"]
+
+[ext_resource type="Texture2D" uid="uid://ll80jwa0cxsv" path="res://sprites/conveyor_belt.png" id="1_a3yyl"]
+[ext_resource type="Script" path="res://scripts/conveyor_belt.gd" id="1_f8m55"]
+[ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="2_ry158"]
+[ext_resource type="PackedScene" uid="uid://dh858rb4gygw1" path="res://scenes/package.tscn" id="2_ymp66"]
+
+[sub_resource type="Curve2D" id="Curve2D_efvhv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 25, -33, 0, 0, 0, 0, -16, -33, 0, 0, 0, 0, -16, 21, 0, 0, 0, 0, -40, 21)
+}
+point_count = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfegk"]
+atlas = ExtResource("2_ry158")
+region = Rect2(80, 80, 16, 16)
+
+[node name="ConveyorBelt" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_f8m55")
+package_scene = ExtResource("2_ymp66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+texture = ExtResource("1_a3yyl")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_efvhv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(25, -33)
+rotates = false
+cubic_interp = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+z_index = 3
+texture = SubResource("AtlasTexture_xfegk")

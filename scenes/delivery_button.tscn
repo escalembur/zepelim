@@ -1,15 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://doj4a7ovac6pm"]
+[gd_scene load_steps=10 format=3 uid="uid://doj4a7ovac6pm"]
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_3jgin"]
 [ext_resource type="Script" path="res://scripts/interact_delivery.gd" id="3_gd66n"]
+[ext_resource type="AudioStream" uid="uid://c30gqatprlnky" path="res://sounds/sfx/sfx_button.wav" id="3_l5v8v"]
 [ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="4_eebbx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hb4si"]
 radius = 12.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxtuh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l2kt"]
+atlas = ExtResource("4_eebbx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a87sk"]
 atlas = ExtResource("4_eebbx")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkrb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l2kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a87sk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3acbu"]
 size = Vector2(10, 12)
@@ -26,9 +45,14 @@ shape = SubResource("CircleShape2D_hb4si")
 [node name="DeliveryInteract" type="Node" parent="Interact"]
 script = ExtResource("3_gd66n")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interact/DeliveryInteract"]
+stream = ExtResource("3_l5v8v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -13)
-texture = SubResource("AtlasTexture_nxtuh")
+sprite_frames = SubResource("SpriteFrames_tkrb6")
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)

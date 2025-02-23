@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://4yxs04wsyrfm"]
+[gd_scene load_steps=6 format=3 uid="uid://4yxs04wsyrfm"]
 
 [ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_d8ut8"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_rroc0"]
-[ext_resource type="PackedScene" uid="uid://cskb3ggrsnsph" path="res://scenes/game.tscn" id="3_aw670"]
+[ext_resource type="PackedScene" uid="uid://dwtb72ysyia2o" path="res://scenes/game.tscn" id="3_aw670"]
 [ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="4_1tn6s"]
+[ext_resource type="AudioStream" uid="uid://ci80c38xecndb" path="res://sounds/bgm/main_theme.wav" id="5_feq80"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("quit_button")]
 texture_filter = 1
@@ -68,6 +69,10 @@ text = "Quit
 [node name="SettingsMenu" parent="." node_paths=PackedStringArray("previous_menu") instance=ExtResource("4_1tn6s")]
 layout_mode = 1
 previous_menu = NodePath("../MainMenu")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_feq80")
+autoplay = true
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

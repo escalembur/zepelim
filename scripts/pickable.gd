@@ -1,20 +1,24 @@
 class_name Pickable
 extends Node
 
+@export var sfx_items : Array[AudioStreamWAV]
+
+@onready var player := Global.player
+
 var node2d: Node2D
 var sprite2d: Sprite2D
 var interact_parent: Interact
+var sfx_channel : AudioStreamPlayer
 var item_name: String
 var picked_up := false
 var height := 0.0
-
-@onready var player := Global.player
 
 func _ready():
 	interact_parent = get_parent()
 	interact_parent.interacted.connect(_on_interact)
 	node2d = get_parent().get_parent()
 	sprite2d = node2d.get_node("Item")
+	sfx_channel = get_node("/root/World/SFXItems")
 	item_name = node2d.name
 	Global.pickables.append(self)
 
@@ -37,6 +41,8 @@ func pick_up() -> void:
 	picked_up = !picked_up
 	if picked_up:
 		player.item_carrying = self
+		sfx_channel.stream = sfx_items.pick_random()
+		sfx_channel.play()
 	else:
 		player.item_carrying = null
 		node2d.global_position += player.direction

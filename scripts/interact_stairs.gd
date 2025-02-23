@@ -4,6 +4,7 @@ var interact_parent: Interact
 @onready var player := Global.player
 @onready var pickables := Global.pickables
 @onready var hull : Node2D = get_node("../../../Hull")
+@onready var gondola : Node2D = get_node("../../../Gondola")
 
 func _ready() -> void:
 	interact_parent = get_parent()
@@ -14,6 +15,7 @@ func _ready() -> void:
 
 func _on_interact() -> void:
 	hull.visible = !hull.visible
+	gondola.visible = !gondola.visible
 	if hull.visible:
 		player.set_collision_mask_value(1, false)
 		player.set_collision_mask_value(5, true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwtb72ysyia2o"]
+[gd_scene load_steps=34 format=3 uid="uid://dwtb72ysyia2o"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -18,14 +18,17 @@
 [ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
-[ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://hole.tscn" id="18_0ltu5"]
+[ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
+[ext_resource type="PackedScene" uid="uid://bvo2qeixxq8pu" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
 [ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
+[ext_resource type="PackedScene" uid="uid://wwclycvgwi4y" path="res://scenes/delivery_hatch.tscn" id="19_db531"]
 [ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
 [ext_resource type="PackedScene" uid="uid://pv2jbdinirgc" path="res://scenes/tape.tscn" id="20_2tguh"]
 [ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
 [ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
+[ext_resource type="AudioStream" uid="uid://cajs8ok4o16id" path="res://sounds/bgm/zepelim.mp3" id="29_qf4j3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
 size = Vector2(160, 192)
@@ -65,6 +68,14 @@ script = ExtResource("2_as3ki")
 [node name="InteractManager" type="Node" parent="."]
 script = ExtResource("4_qgsei")
 
+[node name="BGMZepelim" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_qf4j3")
+volume_db = -20.0
+autoplay = true
+
+[node name="SFXItems" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
+
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -100
 texture = ExtResource("8_f3ffd")
@@ -88,7 +99,6 @@ metadata/_edit_lock_ = true
 [node name="Floors" type="Node2D" parent="Airship"]
 
 [node name="Gondola" type="Sprite2D" parent="Airship/Floors"]
-z_index = -99
 texture = ExtResource("20_8cdw8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Gondola"]
@@ -170,15 +180,20 @@ position = Vector2(0, -128)
 [node name="DeliveryButton" parent="Airship/Floors/Gondola" instance=ExtResource("10_vov0c")]
 position = Vector2(0, 32)
 
+[node name="DeliveryHatch" parent="Airship/Floors/Gondola" instance=ExtResource("19_db531")]
+position = Vector2(0, -32)
+
 [node name="Motor" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
 position = Vector2(-128, 64)
 
 [node name="Motor2" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
 position = Vector2(128, 64)
 
+[node name="ConveyorBelt" parent="Airship/Floors/Gondola" instance=ExtResource("18_hvulv")]
+position = Vector2(61, -58)
+
 [node name="Hull" type="Sprite2D" parent="Airship/Floors"]
 visible = false
-z_index = -98
 texture = ExtResource("21_4tiq3")
 script = ExtResource("18_orq0k")
 spawn_scene = ExtResource("18_0ltu5")
@@ -199,6 +214,7 @@ polygon = PackedVector2Array(0, -316, 86, -283, 149, -202, 183, -108, 196, -1, 1
 position = Vector2(-62, 98)
 
 [node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
+z_index = 1
 position = Vector2(0, -80)
 collision_layer = 2
 collision_mask = 16
@@ -209,15 +225,20 @@ speed = 100.0
 ignore_rotation = false
 
 [node name="Lamp" parent="Airship" instance=ExtResource("19_jro62")]
+z_index = 1
 position = Vector2(0, 65)
 
 [node name="Tape" parent="Airship" instance=ExtResource("20_2tguh")]
+z_index = 1
 position = Vector2(-18, 65)
 
 [node name="Wrench" parent="Airship" instance=ExtResource("21_dlfy8")]
+z_index = 1
 position = Vector2(18, 65)
 
 [node name="Button" type="Sprite2D" parent="Airship"]
 visible = false
+z_index = 100
+z_as_relative = false
 texture = SubResource("AtlasTexture_af3c1")
 offset = Vector2(1, -27)

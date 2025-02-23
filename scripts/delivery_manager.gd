@@ -6,7 +6,7 @@ signal delivery_completed()
 signal delivery_failed()
 signal all_deliveries_completed()
 
-@export var delivery_radius := 64.0
+@export var delivery_radius := 10000.0 #64.0
 @export var playable_area_extents := Vector2(5000, 5000)  # Max X/Y distance from center
 @export var required_deliveries := 5
 
