@@ -1,0 +1,266 @@
+[gd_scene load_steps=19 format=3 uid="uid://uxhqo0gjfg0g"]
+
+[ext_resource type="Texture2D" uid="uid://dewtgwia0mbly" path="res://sprites/gameover-fundo.png" id="1_26p0h"]
+[ext_resource type="Texture2D" uid="uid://dlimhshs3ql48" path="res://sprites/gameover-mont1.png" id="2_idq5g"]
+[ext_resource type="Texture2D" uid="uid://ds4l3cn8swjhr" path="res://sprites/gameover-mont2.png" id="3_iyjnc"]
+[ext_resource type="Texture2D" uid="uid://q3skaq3w4g3b" path="res://sprites/gameover-Zep.png" id="4_rkakb"]
+[ext_resource type="Texture2D" uid="uid://j8dmo6tef16n" path="res://sprites/gameover-Smoke.png" id="5_1smqd"]
+[ext_resource type="Texture2D" uid="uid://byu6tely2x65v" path="res://sprites/gameover-vinheta.png" id="6_nnrqk"]
+[ext_resource type="Texture2D" uid="uid://bva3p7sbhd1ff" path="res://sprites/gameover-texto.png" id="7_t3vdc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seft1"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(0, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6t14"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(69, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvpvi"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(138, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwxxm"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(207, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23y87"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(276, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgmv0"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(345, 0, 69, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jtvo"]
+atlas = ExtResource("5_1smqd")
+region = Rect2(414, 0, 69, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tcrrk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seft1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6t14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvpvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwxxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23y87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgmv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jtvo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gb7g7"]
+resource_name = "GameOver"
+length = 104.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Montanha1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 18.3, 24.7333, 73.5667),
+"transitions": PackedFloat32Array(1, 1, 0.307787, 0.307787, 1),
+"update": 0,
+"values": [Vector2(160, 89), Vector2(1, 89), Vector2(94.5121, 89), Vector2(94.5121, 89), Vector2(319, 89)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Montanha2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 18.9, 25.6, 30.7),
+"transitions": PackedFloat32Array(1, 3.03143, 3.03143, 2.92817),
+"update": 0,
+"values": [Vector2(1, 89), Vector2(225.085, 89), Vector2(225.085, 89), Vector2(319, 89)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Zep:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 21.6333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(363, -27), Vector2(-24, 216)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Zep:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.96667, 28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.53048]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vinheta:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(15.6333, 20.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(2.13043, 2.13043), Vector2(0.0514021, 0.0514021)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Texto:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(16.8333, 19.8333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-143, 89), Vector2(158, 89)]
+}
+
+[sub_resource type="Animation" id="Animation_42tgb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Montanha1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 89)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zep:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Zep:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(360, 48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Montanha2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(225.085, 89)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vinheta:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.13043, 2.13043)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Texto:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 89)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qi6kn"]
+_data = {
+"GameOver": SubResource("Animation_gb7g7"),
+"RESET": SubResource("Animation_42tgb")
+}
+
+[node name="GameOver" type="Node2D"]
+texture_filter = 1
+
+[node name="Fundo2" type="Sprite2D" parent="."]
+position = Vector2(160, 89)
+texture = ExtResource("1_26p0h")
+
+[node name="Montanha1" type="Sprite2D" parent="."]
+position = Vector2(160, 89)
+texture = ExtResource("2_idq5g")
+
+[node name="Zep" type="Sprite2D" parent="."]
+position = Vector2(360, 48)
+texture = ExtResource("4_rkakb")
+
+[node name="Smoke" type="AnimatedSprite2D" parent="Zep"]
+position = Vector2(48, -45)
+sprite_frames = SubResource("SpriteFrames_tcrrk")
+autoplay = "default"
+frame = 6
+frame_progress = 0.549333
+
+[node name="Montanha2" type="Sprite2D" parent="."]
+position = Vector2(225.085, 89)
+texture = ExtResource("3_iyjnc")
+
+[node name="Vinheta" type="Sprite2D" parent="."]
+position = Vector2(160, 89)
+scale = Vector2(2.13043, 2.13043)
+texture = ExtResource("6_nnrqk")
+
+[node name="Texto" type="Sprite2D" parent="."]
+position = Vector2(160, 89)
+scale = Vector2(1.35359, 1.35359)
+texture = ExtResource("7_t3vdc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qi6kn")
+}
+autoplay = "GameOver"
+speed_scale = 2.06
