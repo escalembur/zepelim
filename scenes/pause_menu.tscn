@@ -29,7 +29,6 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_cwkar")
 
 [node name="MainMenu" type="Control" parent="MarginContainer"]
 layout_mode = 2

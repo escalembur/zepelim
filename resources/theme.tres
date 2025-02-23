@@ -1,20 +1,48 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bl84kxmf30sss"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bl84kxmf30sss"]
 
 [ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="1_5y81o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3u4u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.219608, 0.192157, 0.192157, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txbnl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.279821, 0.246804, 0.2468, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb3qt"]
 bg_color = Color(0.177853, 0.177853, 0.177853, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 anti_aliasing = false
 
 [resource]
 default_font = ExtResource("1_5y81o")
 default_font_size = 10
-MarginContainer/constants/margin_bottom = 16
-MarginContainer/constants/margin_left = 16
-MarginContainer/constants/margin_right = 16
-MarginContainer/constants/margin_top = 16
+Button/colors/font_color = Color(0.588235, 0.619608, 0.380392, 1)
+Button/colors/font_hover_color = Color(0.901961, 0.882353, 0.792157, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_t3u4u")
+Button/styles/normal = SubResource("StyleBoxFlat_txbnl")
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
 Panel/styles/panel = SubResource("StyleBoxFlat_yb3qt")

@@ -1,6 +1,8 @@
 class_name Airship
 extends CharacterBody2D
 
+@export var game_over : PackedScene
+
 @export_group("Movement")
 @export var max_speed_forward: float = 400.0    # Normal speed
 @export var slow_speed_multiplier: float = 0.5  # 50% of normal speed
@@ -18,7 +20,7 @@ extends CharacterBody2D
 
 @onready var sfx_channel := $AudioStreamPlayer
 
-var altitude := 100000.0
+var altitude := 8000.0
 var holes: Array[Node2D]
 
 var thrust_levels = [-1, 0, 1, 2, 3]  # Reverse, Stop, Slow, Normal, Fast
@@ -58,7 +60,9 @@ func _physics_process(delta):
 	
 	# Calculate motor efficiency
 	var efficiency = calculate_motor_efficiency()
-	altitude -= holes.size() * 10.0 * delta
+	altitude -= holes.size() * 50.0 * delta
+	if altitude <= 0.0:
+		get_tree().change_scene_to_packed(game_over)
 	
 	# Apply efficiency to movement parameters
 	var effective_rotation = rotation_speed * efficiency

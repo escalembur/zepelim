@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=45 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -20,10 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://bb07xv376cmga" path="res://sounds/sfx/sfx_airship_forward.wav" id="9_u2oyr"]
 [ext_resource type="AudioStream" uid="uid://ca8qriy2ld5j8" path="res://sounds/sfx/sfx_airship_stop.wav" id="10_ewhr6"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
+[ext_resource type="PackedScene" uid="uid://uxhqo0gjfg0g" path="res://scenes/GameOver.tscn" id="14_niaus"]
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
-[ext_resource type="PackedScene" path="res://scenes/hole.tscn" id="18_0ltu5"]
+[ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
-[ext_resource type="PackedScene" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
+[ext_resource type="PackedScene" uid="uid://bvo2qeixxq8pu" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
 [ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
 [ext_resource type="PackedScene" uid="uid://wwclycvgwi4y" path="res://scenes/delivery_hatch.tscn" id="19_db531"]
 [ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
@@ -32,13 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
 [ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
 [ext_resource type="AudioStream" uid="uid://cajs8ok4o16id" path="res://sounds/bgm/zepelim.mp3" id="29_qf4j3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
-size = Vector2(160, 192)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yebr2"]
-radius = 3.0
-height = 54.0
+[ext_resource type="Script" path="res://scripts/world_light.gd" id="34_4em7p"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="34_vjx2r"]
+[ext_resource type="Texture2D" uid="uid://bq1fk3ohacx1o" path="res://sprites/tileset.png" id="35_n4n3u"]
 
 [sub_resource type="Theme" id="Theme_766jw"]
 default_font = ExtResource("9_c5h6e")
@@ -48,6 +45,102 @@ MarginContainer/constants/margin_left = 4
 MarginContainer/constants/margin_right = 4
 MarginContainer/constants/margin_top = 4
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g38x4"]
+texture = ExtResource("35_n4n3u")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/bottom_right_corner = 0
+0:2/0/terrains_peering_bit/bottom_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/bottom_right_corner = 0
+1:2/0/terrains_peering_bit/bottom_side = 0
+1:2/0/terrains_peering_bit/bottom_left_corner = 0
+1:2/0/terrains_peering_bit/left_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/bottom_side = 0
+2:2/0/terrains_peering_bit/bottom_left_corner = 0
+2:2/0/terrains_peering_bit/left_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/right_side = 0
+0:3/0/terrains_peering_bit/bottom_right_corner = 0
+0:3/0/terrains_peering_bit/bottom_side = 0
+0:3/0/terrains_peering_bit/top_side = 0
+0:3/0/terrains_peering_bit/top_right_corner = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/bottom_right_corner = 0
+1:3/0/terrains_peering_bit/bottom_side = 0
+1:3/0/terrains_peering_bit/bottom_left_corner = 0
+1:3/0/terrains_peering_bit/left_side = 0
+1:3/0/terrains_peering_bit/top_left_corner = 0
+1:3/0/terrains_peering_bit/top_side = 0
+1:3/0/terrains_peering_bit/top_right_corner = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/bottom_side = 0
+2:3/0/terrains_peering_bit/bottom_left_corner = 0
+2:3/0/terrains_peering_bit/left_side = 0
+2:3/0/terrains_peering_bit/top_left_corner = 0
+2:3/0/terrains_peering_bit/top_side = 0
+0:4/0 = 0
+0:4/0/terrain_set = 0
+0:4/0/terrain = 0
+0:4/0/terrains_peering_bit/right_side = 0
+0:4/0/terrains_peering_bit/top_side = 0
+0:4/0/terrains_peering_bit/top_right_corner = 0
+1:4/0 = 0
+1:4/0/terrain_set = 0
+1:4/0/terrain = 0
+1:4/0/terrains_peering_bit/right_side = 0
+1:4/0/terrains_peering_bit/left_side = 0
+1:4/0/terrains_peering_bit/top_left_corner = 0
+1:4/0/terrains_peering_bit/top_side = 0
+1:4/0/terrains_peering_bit/top_right_corner = 0
+2:4/0 = 0
+2:4/0/terrain_set = 0
+2:4/0/terrain = 0
+2:4/0/terrains_peering_bit/left_side = 0
+2:4/0/terrains_peering_bit/top_left_corner = 0
+2:4/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_bjf63"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Land"
+terrain_set_0/terrain_0/color = Color(0, 0, 0, 1)
+sources/0 = SubResource("TileSetAtlasSource_g38x4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_160kc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yddtu"]
+width = 625
+height = 625
+noise = SubResource("FastNoiseLite_160kc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
+size = Vector2(160, 192)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yebr2"]
+radius = 3.0
+height = 54.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_af3c1"]
 atlas = ExtResource("5_brao4")
 region = Rect2(320, 64, 16, 16)
@@ -56,6 +149,38 @@ region = Rect2(320, 64, 16, 16)
 texture_filter = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 39.0
+offset_bottom = 28.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="DeliveryLabel" type="Label" parent="UI/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_766jw")
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "00/00"
+script = ExtResource("9_sor36")
+
+[node name="TimerLabel" type="Label" parent="UI/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "123"
+script = ExtResource("8_l3frb")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_fbnw6")
@@ -80,14 +205,22 @@ autoplay = true
 [node name="SFXFixes" type="AudioStreamPlayer" parent="."]
 
 [node name="Map" type="Sprite2D" parent="."]
+visible = false
 z_index = -100
 texture = ExtResource("8_f3ffd")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-5000, -5000)
+tile_set = SubResource("TileSet_bjf63")
+script = ExtResource("34_vjx2r")
+noise_texture = SubResource("NoiseTexture2D_yddtu")
 
 [node name="Airship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("motors")]
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vugrx")
+game_over = ExtResource("14_niaus")
 max_speed_forward = 100.0
 max_speed_reverse = 50.0
 rotation_speed = 1.0
@@ -123,35 +256,8 @@ shape = SubResource("CapsuleShape2D_yebr2")
 [node name="Panel" type="Node2D" parent="Airship/Floors/Gondola"]
 position = Vector2(0, -64)
 
-[node name="DeliveryLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
-offset_left = -71.0
-offset_top = -87.0
-offset_right = -36.0
-offset_bottom = -77.0
-theme = SubResource("Theme_766jw")
-theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
-theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("9_c5h6e")
-theme_override_font_sizes/font_size = 10
-text = "00/00"
-script = ExtResource("9_sor36")
-
-[node name="TimerLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
-offset_left = -71.0
-offset_top = -95.0
-offset_right = -31.0
-offset_bottom = -85.0
-theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
-theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("9_c5h6e")
-theme_override_font_sizes/font_size = 10
-text = "123"
-script = ExtResource("8_l3frb")
-
 [node name="DistanceLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
+visible = false
 offset_left = -72.0
 offset_top = -104.0
 offset_right = -37.0
@@ -165,6 +271,7 @@ text = "12390"
 script = ExtResource("6_6fgrp")
 
 [node name="VelocityPanel" type="Label" parent="Airship/Floors/Gondola/Panel"]
+visible = false
 offset_left = -16.0
 offset_top = -80.0
 offset_right = 6.0
@@ -178,7 +285,7 @@ script = ExtResource("9_i2h7o")
 visible = false
 
 [node name="Radar" parent="Airship/Floors/Gondola/Panel" instance=ExtResource("9_ddyvd")]
-position = Vector2(25, -64)
+position = Vector2(35, -64)
 
 [node name="ControlPanel" parent="Airship/Floors/Gondola" instance=ExtResource("5_c0fbq")]
 position = Vector2(8, -136)
@@ -203,7 +310,7 @@ visible = false
 texture = ExtResource("21_4tiq3")
 script = ExtResource("18_orq0k")
 spawn_scene = ExtResource("18_0ltu5")
-spawn_rate = 5.0
+spawn_rate = 30.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Hull"]
 collision_layer = 16
@@ -248,3 +355,8 @@ z_index = 100
 z_as_relative = false
 texture = SubResource("AtlasTexture_af3c1")
 offset = Vector2(1, -27)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Airship"]
+energy = 0.9
+blend_mode = 1
+script = ExtResource("34_4em7p")

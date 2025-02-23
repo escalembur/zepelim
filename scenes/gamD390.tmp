@@ -1,0 +1,267 @@
+[gd_scene load_steps=39 format=3 uid="uid://cskb3ggrsnsph"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
+[ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
+[ext_resource type="PackedScene" uid="uid://bd484q5wnvm5t" path="res://scenes/player.tscn" id="1_whmg4"]
+[ext_resource type="Script" path="res://scripts/time_manager.gd" id="2_24dxf"]
+[ext_resource type="Script" path="res://scripts/delivery_manager.gd" id="2_as3ki"]
+[ext_resource type="PackedScene" uid="uid://drd6obqg3n5m6" path="res://scenes/pause_menu.tscn" id="4_3mjxw"]
+[ext_resource type="Script" path="res://scripts/interact_manager.gd" id="4_qgsei"]
+[ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="5_brao4"]
+[ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
+[ext_resource type="Script" path="res://scripts/distance.gd" id="6_6fgrp"]
+[ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
+[ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
+[ext_resource type="Script" path="res://scripts/timer_label.gd" id="8_l3frb"]
+[ext_resource type="AudioStream" uid="uid://dkquo6p3pmy0w" path="res://sounds/sfx/sfx_airship_backward.wav" id="8_ma01y"]
+[ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="9_c5h6e"]
+[ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
+[ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
+[ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
+[ext_resource type="AudioStream" uid="uid://bb07xv376cmga" path="res://sounds/sfx/sfx_airship_forward.wav" id="9_u2oyr"]
+[ext_resource type="AudioStream" uid="uid://ca8qriy2ld5j8" path="res://sounds/sfx/sfx_airship_stop.wav" id="10_ewhr6"]
+[ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
+[ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
+[ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
+[ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
+[ext_resource type="PackedScene" uid="uid://bvo2qeixxq8pu" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
+[ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
+[ext_resource type="PackedScene" uid="uid://wwclycvgwi4y" path="res://scenes/delivery_hatch.tscn" id="19_db531"]
+[ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
+[ext_resource type="PackedScene" uid="uid://pv2jbdinirgc" path="res://scenes/tape.tscn" id="20_2tguh"]
+[ext_resource type="Texture2D" uid="uid://ch2d535tk07to" path="res://sprites/gondola.png" id="20_8cdw8"]
+[ext_resource type="Texture2D" uid="uid://cphusolq6mjix" path="res://sprites/casco.png" id="21_4tiq3"]
+[ext_resource type="PackedScene" uid="uid://dggyna6cc1w0f" path="res://scenes/wrench.tscn" id="21_dlfy8"]
+[ext_resource type="AudioStream" uid="uid://cajs8ok4o16id" path="res://sounds/bgm/zepelim.mp3" id="29_qf4j3"]
+[ext_resource type="Script" path="res://scripts/world_light.gd" id="34_4em7p"]
+
+[sub_resource type="Theme" id="Theme_766jw"]
+default_font = ExtResource("9_c5h6e")
+default_font_size = 10
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aiqq"]
+size = Vector2(160, 192)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yebr2"]
+radius = 3.0
+height = 54.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af3c1"]
+atlas = ExtResource("5_brao4")
+region = Rect2(320, 64, 16, 16)
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+offset_right = 35.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="DeliveryLabel" type="Label" parent="UI/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_766jw")
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "00/00"
+script = ExtResource("9_sor36")
+
+[node name="TimerLabel" type="Label" parent="UI/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "123"
+script = ExtResource("8_l3frb")
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("4_3mjxw")]
+visible = false
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_fbnw6")
+
+[node name="TimeManager" type="Timer" parent="."]
+script = ExtResource("2_24dxf")
+start_time = 300.0
+time_per_delivery = 30.0
+
+[node name="DeliveryManager" type="Node" parent="."]
+script = ExtResource("2_as3ki")
+
+[node name="InteractManager" type="Node" parent="."]
+script = ExtResource("4_qgsei")
+
+[node name="BGMZepelim" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_qf4j3")
+autoplay = true
+
+[node name="SFXItems" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXFixes" type="AudioStreamPlayer" parent="."]
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("8_f3ffd")
+
+[node name="Airship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("motors")]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vugrx")
+max_speed_forward = 100.0
+max_speed_reverse = 50.0
+rotation_speed = 1.0
+acceleration = 20.0
+deceleration = 30.0
+motors = [NodePath("Floors/Gondola/Motor"), NodePath("Floors/Gondola/Motor2")]
+sfx_airship = Array[AudioStreamWAV]([ExtResource("8_ma01y"), ExtResource("10_ewhr6"), ExtResource("9_u2oyr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
+shape = SubResource("RectangleShape2D_1aiqq")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Airship"]
+
+[node name="Floors" type="Node2D" parent="Airship"]
+
+[node name="Gondola" type="Sprite2D" parent="Airship/Floors"]
+texture = ExtResource("20_8cdw8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Gondola"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Gondola/StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(0, 149, 27, 144, 47, 133, 77, 103, 77, 51, 72, 51, 72, 33, 73, 33, 73, 32, 85, 32, 85, 33, 86, 33, 86, 34, 87, 34, 87, 35, 88, 35, 88, 53, 96, 67, 103, 73, 115, 75, 137, 66, 141, 56, 141, -40, 88, -40, 88, -18, 88, 0, 72, 0, 72, -20, 73, -20, 73, -21, 77, -21, 77, -83, 78, -83, 78, -84, 87, -84, 87, -83, 88, -83, 88, -80, 113, -80, 113, -91, 96, -91, 96, -92, 95, -92, 95, -104, 88, -104, 88, -106, 77, -106, 77, -116, 67, -120, 42, -139, 18, -149, 0, -153, -29, -145, -49, -134, -66, -120, -77, -116, -77, -21, -73, -21, -73, -20, -72, -20, -72, 0, -88, 0, -88, -41, -141, -41, -141, 57, -130, 74, -107, 74, -88, 53, -88, 35, -85, 32, -73, 32, -73, 33, -72, 33, -72, 52, -77, 52, -77, 104, -60, 122, -43, 134, -24, 145)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airship/Floors/Gondola/StaticBody2D"]
+position = Vector2(0.5, 60)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yebr2")
+
+[node name="Panel" type="Node2D" parent="Airship/Floors/Gondola"]
+position = Vector2(0, -64)
+
+[node name="DistanceLabel" type="Label" parent="Airship/Floors/Gondola/Panel"]
+visible = false
+offset_left = -72.0
+offset_top = -104.0
+offset_right = -37.0
+offset_bottom = -94.0
+theme_override_colors/font_color = Color(0.901961, 0.882353, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.388235, 0.254902, 0.341176, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+text = "12390"
+script = ExtResource("6_6fgrp")
+
+[node name="VelocityPanel" type="Label" parent="Airship/Floors/Gondola/Panel"]
+offset_left = -16.0
+offset_top = -80.0
+offset_right = 6.0
+offset_bottom = -68.0
+rotation = 1.5708
+theme_override_fonts/font = ExtResource("9_c5h6e")
+theme_override_font_sizes/font_size = 10
+script = ExtResource("9_i2h7o")
+
+[node name="Compass" parent="Airship/Floors/Gondola/Panel" instance=ExtResource("8_4o8pk")]
+visible = false
+
+[node name="Radar" parent="Airship/Floors/Gondola/Panel" instance=ExtResource("9_ddyvd")]
+position = Vector2(35, -64)
+
+[node name="ControlPanel" parent="Airship/Floors/Gondola" instance=ExtResource("5_c0fbq")]
+position = Vector2(8, -136)
+
+[node name="DeliveryButton" parent="Airship/Floors/Gondola" instance=ExtResource("10_vov0c")]
+position = Vector2(-26, -27)
+
+[node name="DeliveryHatch" parent="Airship/Floors/Gondola" instance=ExtResource("19_db531")]
+position = Vector2(0, -32)
+
+[node name="Motor" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
+position = Vector2(-128, 64)
+
+[node name="Motor2" parent="Airship/Floors/Gondola" instance=ExtResource("18_hemfu")]
+position = Vector2(128, 64)
+
+[node name="ConveyorBelt" parent="Airship/Floors/Gondola" instance=ExtResource("18_hvulv")]
+position = Vector2(61, -58)
+
+[node name="Hull" type="Sprite2D" parent="Airship/Floors"]
+visible = false
+texture = ExtResource("21_4tiq3")
+script = ExtResource("18_orq0k")
+spawn_scene = ExtResource("18_0ltu5")
+spawn_rate = 5.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Airship/Floors/Hull"]
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Airship/Floors/Hull/StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(0, -316, 86, -283, 149, -202, 183, -108, 196, -1, 179, 121, 141, 220, 78, 288, -1, 316, -87, 283, -147, 210, -183, 106, -195, 2, -178, -130, -138, -222, -68, -295)
+
+[node name="Timer" type="Timer" parent="Airship/Floors/Hull"]
+
+[node name="Hole" parent="Airship/Floors/Hull" instance=ExtResource("18_0ltu5")]
+
+[node name="Stairs" parent="Airship/Floors" instance=ExtResource("17_uo367")]
+position = Vector2(-62, 98)
+
+[node name="Player" parent="Airship" instance=ExtResource("1_whmg4")]
+z_index = 1
+position = Vector2(0, -80)
+collision_layer = 2
+collision_mask = 16
+motion_mode = 0
+speed = 100.0
+
+[node name="Camera2D" type="Camera2D" parent="Airship/Player"]
+ignore_rotation = false
+
+[node name="Lamp" parent="Airship" instance=ExtResource("19_jro62")]
+z_index = 1
+position = Vector2(0, 65)
+
+[node name="Tape" parent="Airship" instance=ExtResource("20_2tguh")]
+z_index = 1
+position = Vector2(-18, 65)
+
+[node name="Wrench" parent="Airship" instance=ExtResource("21_dlfy8")]
+z_index = 1
+position = Vector2(18, 65)
+
+[node name="Button" type="Sprite2D" parent="Airship"]
+visible = false
+z_index = 100
+z_as_relative = false
+texture = SubResource("AtlasTexture_af3c1")
+offset = Vector2(1, -27)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Airship"]
+visible = false
+energy = 0.9
+blend_mode = 1
+script = ExtResource("34_4em7p")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false

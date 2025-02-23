@@ -4,8 +4,8 @@
 
 [sub_resource type="Gradient" id="Gradient_3lnvv"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.648936, 0.737589)
-colors = PackedColorArray(0.151996, 0.151996, 0.151996, 1, 0.560955, 0.560955, 0.560955, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.635417, 0.755208)
+colors = PackedColorArray(0.388235, 0.254902, 0.341176, 1, 0.760784, 0.713726, 0.584314, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lhal1"]
 gradient = SubResource("Gradient_3lnvv")
@@ -17,7 +17,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="Gradient" id="Gradient_yqs1l"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.861702)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0.77152, 0.263343, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.588235, 0.619608, 0.380392, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4xcre"]
 gradient = SubResource("Gradient_yqs1l")
@@ -27,7 +27,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Radar" type="Sprite2D"]
-position = Vector2(38, -71)
 texture = SubResource("GradientTexture2D_lhal1")
 script = ExtResource("1_1d40r")
 

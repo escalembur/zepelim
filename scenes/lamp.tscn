@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1kdkqm0khop4"]
+[gd_scene load_steps=11 format=3 uid="uid://d1kdkqm0khop4"]
 
 [ext_resource type="Script" path="res://scripts/pickable.gd" id="1_4akw1"]
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="2_1gdb3"]
@@ -13,6 +13,17 @@ radius = 8.0
 [sub_resource type="AtlasTexture" id="AtlasTexture_be5bq"]
 atlas = ExtResource("4_dc34o")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_fuyug"]
+offsets = PackedFloat32Array(0, 0.666667)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dbak4"]
+gradient = SubResource("Gradient_fuyug")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Lamp" type="Node2D"]
 texture_filter = 1
@@ -30,3 +41,7 @@ sfx_items = Array[AudioStreamWAV]([ExtResource("3_xi17t"), ExtResource("4_aj454"
 [node name="Item" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_be5bq")
 offset = Vector2(0, -7)
+
+[node name="PointLight2D" type="PointLight2D" parent="Item"]
+energy = 0.8
+texture = SubResource("GradientTexture2D_dbak4")
