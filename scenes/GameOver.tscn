@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://uxhqo0gjfg0g"]
+[gd_scene load_steps=22 format=3 uid="uid://c3f7n38ijyd7g"]
 
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_6ti3o"]
 [ext_resource type="Texture2D" uid="uid://dewtgwia0mbly" path="res://sprites/gameover-fundo.png" id="1_26p0h"]
 [ext_resource type="Texture2D" uid="uid://dlimhshs3ql48" path="res://sprites/gameover-mont1.png" id="2_idq5g"]
 [ext_resource type="Texture2D" uid="uid://ds4l3cn8swjhr" path="res://sprites/gameover-mont2.png" id="3_iyjnc"]
@@ -7,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://j8dmo6tef16n" path="res://sprites/gameover-Smoke.png" id="5_1smqd"]
 [ext_resource type="Texture2D" uid="uid://byu6tely2x65v" path="res://sprites/gameover-vinheta.png" id="6_nnrqk"]
 [ext_resource type="Texture2D" uid="uid://bva3p7sbhd1ff" path="res://sprites/gameover-texto.png" id="7_t3vdc"]
+[ext_resource type="AudioStream" uid="uid://cty04g583ke7t" path="res://sounds/sfx/sfx_explosion_lamp.wav" id="8_dnavn"]
+[ext_resource type="AudioStream" uid="uid://bjf6mitndbkcl" path="res://sounds/sfx/sfx_gameover.wav" id="9_6thyi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_seft1"]
 atlas = ExtResource("5_1smqd")
@@ -67,7 +70,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_gb7g7"]
 resource_name = "GameOver"
-length = 104.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,7 +81,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0001, 18.3, 24.7333, 73.5667),
 "transitions": PackedFloat32Array(1, 1, 0.307787, 0.307787, 1),
 "update": 0,
-"values": [Vector2(160, 89), Vector2(1, 89), Vector2(94.5121, 89), Vector2(94.5121, 89), Vector2(319, 89)]
+"values": [Vector2(160, 90), Vector2(1, 89), Vector2(94.512, 90), Vector2(94.512, 90), Vector2(319, 89)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +93,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 18.9, 25.6, 30.7),
 "transitions": PackedFloat32Array(1, 3.03143, 3.03143, 2.92817),
 "update": 0,
-"values": [Vector2(1, 89), Vector2(225.085, 89), Vector2(225.085, 89), Vector2(319, 89)]
+"values": [Vector2(1, 90), Vector2(225.085, 90), Vector2(225.085, 90), Vector2(319, 90)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -140,6 +143,25 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(-143, 89), Vector2(158, 89)]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_dnavn")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_6thyi")
+}],
+"times": PackedFloat32Array(0, 16.4)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_42tgb"]
 length = 0.001
@@ -224,6 +246,7 @@ _data = {
 
 [node name="GameOver" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_6ti3o")
 
 [node name="Fundo2" type="Sprite2D" parent="."]
 position = Vector2(160, 89)
@@ -241,8 +264,7 @@ texture = ExtResource("4_rkakb")
 position = Vector2(48, -45)
 sprite_frames = SubResource("SpriteFrames_tcrrk")
 autoplay = "default"
-frame = 6
-frame_progress = 0.549333
+frame_progress = 0.71577
 
 [node name="Montanha2" type="Sprite2D" parent="."]
 position = Vector2(225.085, 89)
@@ -263,4 +285,8 @@ libraries = {
 "": SubResource("AnimationLibrary_qi6kn")
 }
 autoplay = "GameOver"
-speed_scale = 2.06
+speed_scale = 4.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

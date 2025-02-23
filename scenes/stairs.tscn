@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3sme3um5uy8e"]
+[gd_scene load_steps=5 format=3 uid="uid://d3sme3um5uy8e"]
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_o3nk7"]
 [ext_resource type="Script" path="res://scripts/interact_stairs.gd" id="3_3urly"]
+[ext_resource type="PackedScene" uid="uid://c3f7n38ijyd7g" path="res://scenes/GameOver.tscn" id="3_qb374"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdxnv"]
 radius = 20.0
@@ -15,3 +16,4 @@ shape = SubResource("CircleShape2D_gdxnv")
 
 [node name="InteractStairs" type="Node" parent="Interact"]
 script = ExtResource("3_3urly")
+game_over = ExtResource("3_qb374")

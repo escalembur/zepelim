@@ -20,6 +20,8 @@ func _ready():
 	sprite2d = node2d.get_node("Item")
 	sfx_channel = get_node("/root/World/SFXItems")
 	item_name = node2d.name
+	if Global.pickables.size() == 3:
+		Global.pickables.clear()
 	Global.pickables.append(self)
 
 

@@ -6,6 +6,8 @@ var interact_parent: Interact
 @onready var hull : Node2D = get_node("../../../Hull")
 @onready var gondola : Node2D = get_node("../../../Gondola")
 
+@export var game_over : PackedScene
+
 func _ready() -> void:
 	interact_parent = get_parent()
 	interact_parent.interacted.connect(_on_interact)
@@ -30,6 +32,8 @@ func _on_interact() -> void:
 	for pickable in pickables:
 		if player.item_carrying == pickable:
 			pickable.interact_parent.floor = player.floor
+			if player.floor == Global.Floor.HULL && pickable.item_name == "Lamp":
+				get_tree().change_scene_to_packed(game_over)
 		else:
 			var on_same_floor = pickable.interact_parent.floor == player.floor
 			pickable.interact_parent.monitoring = on_same_floor
