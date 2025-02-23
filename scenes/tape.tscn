@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://pv2jbdinirgc"]
+[gd_scene load_steps=9 format=3 uid="uid://pv2jbdinirgc"]
 
 [ext_resource type="Script" path="res://scripts/pickable.gd" id="1_igldx"]
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="2_d75a0"]
+[ext_resource type="AudioStream" uid="uid://b532h446n27hx" path="res://sounds/sfx/sfx_item_001.wav" id="3_ag8ie"]
+[ext_resource type="AudioStream" uid="uid://dl6a2yf4ckem2" path="res://sounds/sfx/sfx_item_002.wav" id="4_2uhw7"]
 [ext_resource type="Texture2D" uid="uid://csrlq7stnc7aa" path="res://sprites/items.png" id="4_os08q"]
+[ext_resource type="AudioStream" uid="uid://cn4s8uphucosx" path="res://sounds/sfx/sfx_item_003.wav" id="5_70w8a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rexls"]
 radius = 8.0
@@ -22,6 +25,7 @@ shape = SubResource("CircleShape2D_rexls")
 
 [node name="PickUp" type="Node" parent="Interact"]
 script = ExtResource("1_igldx")
+sfx_items = Array[AudioStreamWAV]([ExtResource("3_ag8ie"), ExtResource("4_2uhw7"), ExtResource("5_70w8a")])
 
 [node name="Item" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_be5bq")

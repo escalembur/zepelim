@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://wwclycvgwi4y"]
+
+[ext_resource type="Script" path="res://scripts/hatch.gd" id="1_nmqdy"]
+[ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="2_e2ruo"]
+[ext_resource type="AudioStream" uid="uid://cgtbe48cvcx02" path="res://sounds/sfx/sfx_hatch.wav" id="3_qj2i5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b745b"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jy00"]
+atlas = ExtResource("2_e2ruo")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrt7p"]
+atlas = ExtResource("2_e2ruo")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_covpt"]
+atlas = ExtResource("2_e2ruo")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gk2ac"]
+animations = [{
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_4jy00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrt7p")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_covpt")
+}],
+"loop": false,
+"name": &"open",
+"speed": 15.0
+}]
+
+[node name="DeliveryHatch" type="StaticBody2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_nmqdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b745b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gk2ac")
+animation = &"open"
+autoplay = "open"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qj2i5")

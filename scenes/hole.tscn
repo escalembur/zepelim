@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://djoxae2hkwkd5"]
+
+[ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_gbxsh"]
+[ext_resource type="Script" path="res://scripts/interact_hole.gd" id="2_buv6r"]
+[ext_resource type="Texture2D" uid="uid://xyix4byiupsu" path="res://sprites/holes.png" id="3_v32sc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ax1vd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbail"]
+atlas = ExtResource("3_v32sc")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Hole" type="Node2D"]
+texture_filter = 1
+
+[node name="Interact" parent="." instance=ExtResource("1_gbxsh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+shape = SubResource("CircleShape2D_ax1vd")
+
+[node name="HoleInteract" type="Node" parent="Interact"]
+script = ExtResource("2_buv6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_xbail")

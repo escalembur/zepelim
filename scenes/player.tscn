@@ -1,7 +1,16 @@
-[gd_scene load_steps=41 format=3 uid="uid://bd484q5wnvm5t"]
+[gd_scene load_steps=50 format=3 uid="uid://bd484q5wnvm5t"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g8s1e"]
+[ext_resource type="AudioStream" uid="uid://cxep3ukevjvf0" path="res://sounds/sfx/sfx_steps_001.wav" id="2_twpnv"]
 [ext_resource type="Texture2D" uid="uid://dwn2cvu7oaicv" path="res://sprites/playersheet.png" id="3_0q4ne"]
+[ext_resource type="AudioStream" uid="uid://bs7yuiapr4d80" path="res://sounds/sfx/sfx_steps_002.wav" id="3_jcttb"]
+[ext_resource type="AudioStream" uid="uid://w7whx2u7rhe6" path="res://sounds/sfx/sfx_steps_003.wav" id="4_nin6f"]
+[ext_resource type="AudioStream" uid="uid://dwkk1mryucmwo" path="res://sounds/sfx/sfx_steps_004.wav" id="5_d56of"]
+[ext_resource type="AudioStream" uid="uid://b03v560a813es" path="res://sounds/sfx/sfx_steps_005.wav" id="6_5j42j"]
+[ext_resource type="AudioStream" uid="uid://ckwkeib5hm663" path="res://sounds/sfx/sfx_steps_006.wav" id="7_t3ax1"]
+[ext_resource type="AudioStream" uid="uid://xq4xwfwhmgas" path="res://sounds/sfx/sfx_steps_007.wav" id="8_tbw6q"]
+[ext_resource type="AudioStream" uid="uid://dw3gai4rdfmw7" path="res://sounds/sfx/sfx_steps_008.wav" id="9_xqdrv"]
+[ext_resource type="AudioStream" uid="uid://bdgfv45jqctkf" path="res://sounds/sfx/sfx_steps_009.wav" id="10_a4jji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfqwt"]
 radius = 8.0
@@ -233,7 +242,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_carry_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -250,7 +259,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_carry_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,7 +276,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_carry_up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -284,7 +293,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -301,7 +310,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -318,13 +327,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 motion_mode = 1
 script = ExtResource("1_g8s1e")
+sfx_steps = Array[AudioStreamWAV]([ExtResource("2_twpnv"), ExtResource("3_jcttb"), ExtResource("4_nin6f"), ExtResource("5_d56of"), ExtResource("6_5j42j"), ExtResource("7_t3ax1"), ExtResource("8_tbw6q"), ExtResource("9_xqdrv"), ExtResource("10_a4jji")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -334,3 +344,6 @@ shape = SubResource("CircleShape2D_rfqwt")
 sprite_frames = SubResource("SpriteFrames_oi243")
 animation = &"idle_down"
 offset = Vector2(0, -8)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 24.0
