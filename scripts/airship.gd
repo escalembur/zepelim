@@ -60,7 +60,7 @@ func _physics_process(delta):
 	
 	# Calculate motor efficiency
 	var efficiency = calculate_motor_efficiency()
-	altitude -= holes.size() * 50.0 * delta
+	altitude -= holes.size() * 10.0 * delta
 	if altitude <= 0.0:
 		get_tree().change_scene_to_packed(game_over)
 	

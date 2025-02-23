@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		pointer.global_rotation = angle
 	
 	# Distance-based Y position and flashing
-	var min_distance = 64.0
+	var min_distance = 128.0
 	var max_distance = 640.0
 	
 	if distance > min_distance:
