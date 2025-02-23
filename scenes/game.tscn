@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dwtb72ysyia2o"]
+[gd_scene load_steps=37 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -21,9 +21,9 @@
 [ext_resource type="AudioStream" uid="uid://ca8qriy2ld5j8" path="res://sounds/sfx/sfx_airship_stop.wav" id="10_ewhr6"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
-[ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
+[ext_resource type="PackedScene" path="res://scenes/hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
-[ext_resource type="PackedScene" uid="uid://bvo2qeixxq8pu" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
+[ext_resource type="PackedScene" path="res://scenes/conveyor_belt.tscn" id="18_hvulv"]
 [ext_resource type="Script" path="res://scripts/hull.gd" id="18_orq0k"]
 [ext_resource type="PackedScene" uid="uid://wwclycvgwi4y" path="res://scenes/delivery_hatch.tscn" id="19_db531"]
 [ext_resource type="PackedScene" uid="uid://d1kdkqm0khop4" path="res://scenes/lamp.tscn" id="19_jro62"]
@@ -184,7 +184,7 @@ position = Vector2(25, -64)
 position = Vector2(8, -136)
 
 [node name="DeliveryButton" parent="Airship/Floors/Gondola" instance=ExtResource("10_vov0c")]
-position = Vector2(0, 32)
+position = Vector2(-26, -27)
 
 [node name="DeliveryHatch" parent="Airship/Floors/Gondola" instance=ExtResource("19_db531")]
 position = Vector2(0, -32)
