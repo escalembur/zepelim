@@ -48,7 +48,6 @@ shape = SubResource("RectangleShape2D_b745b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gk2ac")
 animation = &"open"
-autoplay = "open"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qj2i5")

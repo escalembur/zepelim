@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dwtb72ysyia2o"]
+[gd_scene load_steps=37 format=3 uid="uid://dwtb72ysyia2o"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -12,10 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://r8unj6qmun56" path="res://scenes/compass.tscn" id="8_4o8pk"]
 [ext_resource type="Texture2D" uid="uid://d2qf4d2dd4jmm" path="res://sprites/world.png" id="8_f3ffd"]
 [ext_resource type="Script" path="res://scripts/timer_label.gd" id="8_l3frb"]
+[ext_resource type="AudioStream" uid="uid://dkquo6p3pmy0w" path="res://sounds/sfx/sfx_airship_backward.wav" id="8_ma01y"]
 [ext_resource type="FontFile" uid="uid://c5pg5x6humej2" path="res://interface/fonts/FT88-Regular.ttf" id="9_c5h6e"]
 [ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
 [ext_resource type="Script" path="res://scripts/velocity_panel.gd" id="9_i2h7o"]
 [ext_resource type="Script" path="res://scripts/delivery_label.gd" id="9_sor36"]
+[ext_resource type="AudioStream" uid="uid://bb07xv376cmga" path="res://sounds/sfx/sfx_airship_forward.wav" id="9_u2oyr"]
+[ext_resource type="AudioStream" uid="uid://ca8qriy2ld5j8" path="res://sounds/sfx/sfx_airship_stop.wav" id="10_ewhr6"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
 [ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
@@ -70,11 +73,11 @@ script = ExtResource("4_qgsei")
 
 [node name="BGMZepelim" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_qf4j3")
-volume_db = -20.0
 autoplay = true
 
 [node name="SFXItems" type="AudioStreamPlayer" parent="."]
-volume_db = 5.0
+
+[node name="SFXFixes" type="AudioStreamPlayer" parent="."]
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -100
@@ -91,10 +94,13 @@ rotation_speed = 1.0
 acceleration = 20.0
 deceleration = 30.0
 motors = [NodePath("Floors/Gondola/Motor"), NodePath("Floors/Gondola/Motor2")]
+sfx_airship = Array[AudioStreamWAV]([ExtResource("8_ma01y"), ExtResource("10_ewhr6"), ExtResource("9_u2oyr")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Airship"]
 shape = SubResource("RectangleShape2D_1aiqq")
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Airship"]
 
 [node name="Floors" type="Node2D" parent="Airship"]
 
@@ -175,7 +181,7 @@ visible = false
 position = Vector2(25, -64)
 
 [node name="ControlPanel" parent="Airship/Floors/Gondola" instance=ExtResource("5_c0fbq")]
-position = Vector2(0, -128)
+position = Vector2(8, -136)
 
 [node name="DeliveryButton" parent="Airship/Floors/Gondola" instance=ExtResource("10_vov0c")]
 position = Vector2(0, 32)

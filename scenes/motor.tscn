@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b28va3pgdpvfy"]
+[gd_scene load_steps=15 format=3 uid="uid://b28va3pgdpvfy"]
 
 [ext_resource type="Script" path="res://scripts/motor.gd" id="1_fku3r"]
 [ext_resource type="Script" path="res://scripts/interact_engine.gd" id="3_516xx"]
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="3_ud8tb"]
 [ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="4_u0qrs"]
+[ext_resource type="AudioStream" uid="uid://c6m56fc2mus86" path="res://sounds/sfx/sfx_motor_fix.wav" id="5_8calj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mj75"]
 atlas = ExtResource("4_u0qrs")
@@ -79,3 +80,4 @@ shape = SubResource("CapsuleShape2D_va7ri")
 [node name="InteractEngine" type="Node" parent="Interact" node_paths=PackedStringArray("motor")]
 script = ExtResource("3_516xx")
 motor = NodePath("../..")
+sfx_fix = ExtResource("5_8calj")

@@ -9,9 +9,10 @@ func _ready() -> void:
 	)
 
 func open_hatch():
-	set_collision_layer_value(1, true)
-	sprite.play("open")
-	sfx_channel.play()
+	if sprite.frame == 0:
+		set_collision_layer_value(1, true)
+		sprite.play("open")
+		sfx_channel.play()
 
 func close_hatch():
 	set_collision_layer_value(1, false)

@@ -13,6 +13,11 @@ extends CharacterBody2D
 @export_group("Motors")
 @export var motors: Array[Motor]                # Assign motors in inspector
 
+@export_group("Sounds")
+@export var sfx_airship : Array[AudioStreamWAV]
+
+@onready var sfx_channel := $AudioStreamPlayer
+
 var altitude := 100000.0
 var holes: Array[Node2D]
 
@@ -31,10 +36,20 @@ func _ready():
 
 func _input(event):
 	if controlling:
+		var thrust_index = current_thrust_index
 		if event.is_action_pressed("ui_up"):
 			current_thrust_index = clamp(current_thrust_index + 1, 0, len(thrust_levels) - 1)
+			if thrust_index != current_thrust_index:
+				var sfx_index = min(current_thrust_index, 2)
+				sfx_channel.stream = sfx_airship[sfx_index]
+				sfx_channel.play()
 		elif event.is_action_pressed("ui_down"):
 			current_thrust_index = clamp(current_thrust_index - 1, 0, len(thrust_levels) - 1)
+			if thrust_index != current_thrust_index:
+				var sfx_index = (2 - min(current_thrust_index, 2)) % 2
+				sfx_channel.stream = sfx_airship[sfx_index]
+				sfx_channel.play()
+		
 
 func _physics_process(delta):
 	var rotation_input := 0.0

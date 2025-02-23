@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cox0py5tss8ai"]
+[gd_scene load_steps=16 format=3 uid="uid://cox0py5tss8ai"]
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_5svme"]
 [ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_dgulb"]
@@ -20,8 +20,51 @@ radius = 8.0
 atlas = ExtResource("2_pxoi3")
 region = Rect2(6, 100, 34, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wrl0"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(0, 76, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgvi7"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(16, 76, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57u5c"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(32, 76, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2toe"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(48, 76, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_145jq"]
+atlas = ExtResource("2_pxoi3")
+region = Rect2(64, 76, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25orb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wrl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgvi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57u5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2toe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_145jq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
-size = Vector2(32, 17)
+size = Vector2(50, 17)
 
 [node name="ControlPanel" type="StaticBody2D"]
 texture_filter = 1
@@ -38,9 +81,13 @@ shape = SubResource("CircleShape2D_mgcu8")
 [node name="AirshipControl" type="Node" parent="Interact"]
 script = ExtResource("3_vpcno")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Panel" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_auynv")
 
+[node name="Lever" type="AnimatedSprite2D" parent="."]
+position = Vector2(-26, 2)
+sprite_frames = SubResource("SpriteFrames_25orb")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.5)
+position = Vector2(-9, -3.5)
 shape = SubResource("RectangleShape2D_adu1i")

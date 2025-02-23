@@ -346,4 +346,3 @@ animation = &"idle_down"
 offset = Vector2(0, -8)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 24.0

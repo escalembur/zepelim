@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dkquo6p3pmy0w"
-path="res://.godot/imported/sfx_zepelim_backward.wav-e87517c7b132a33244a34953c1dfbe02.sample"
+path="res://.godot/imported/sfx_airship_backward.wav-7723c8b949fbfb8294527bf09cdafd8d.sample"
 
 [deps]
 
-source_file="res://sounds/sfx/sfx_zepelim_backward.wav"
-dest_files=["res://.godot/imported/sfx_zepelim_backward.wav-e87517c7b132a33244a34953c1dfbe02.sample"]
+source_file="res://sounds/sfx/sfx_airship_backward.wav"
+dest_files=["res://.godot/imported/sfx_airship_backward.wav-7723c8b949fbfb8294527bf09cdafd8d.sample"]
 
 [params]
 
