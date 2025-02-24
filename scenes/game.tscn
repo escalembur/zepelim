@@ -265,6 +265,7 @@ text = "Steer"
 
 [node name="TutorialIntro" parent="UI" instance=ExtResource("7_urahg")]
 process_mode = 3
+visible = false
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_fbnw6")
@@ -408,7 +409,6 @@ texture = SubResource("AtlasTexture_af3c1")
 offset = Vector2(1, -27)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Airship"]
-visible = false
 energy = 0.9
 blend_mode = 1
 script = ExtResource("34_4em7p")

@@ -16,6 +16,7 @@ var transition_start_energy : float # Energy level at the beginning of transitio
 
 
 func _ready():
+	visible = true
 	interval_seconds = interval_minutes * 60.0 # Convert minutes to seconds
 	energy = off_energy # Initially start off
 

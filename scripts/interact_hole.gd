@@ -1,8 +1,9 @@
 extends Node
 
 var interact_parent: Interact
-@onready var player = Global.player
 var sfx_channel : AudioStreamPlayer
+@onready var player = Global.player
+@onready var airship = Global.airship
 
 var expected_item := "Tape"
 
@@ -20,5 +21,6 @@ func _on_interact() -> void:
 	if !player.item_carrying: return
 	if player.item_carrying.item_name == expected_item:
 		get_parent().get_parent().queue_free()
+		airship.holes.remove_at(0)
 		sfx_channel.stream = sfx_fix
 		sfx_channel.play()

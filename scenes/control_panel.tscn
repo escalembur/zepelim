@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cox0py5tss8ai"]
+[gd_scene load_steps=19 format=3 uid="uid://cox0py5tss8ai"]
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_5svme"]
 [ext_resource type="Script" path="res://scripts/control_panel.gd" id="1_dgulb"]
 [ext_resource type="Texture2D" uid="uid://cn6veyeknmhnn" path="res://sprites/objects.png" id="2_pxoi3"]
 [ext_resource type="Script" path="res://scripts/airship_control.gd" id="3_vpcno"]
+[ext_resource type="Script" path="res://scripts/altimeter.gd" id="5_w6cr2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giip6"]
 atlas = ExtResource("2_pxoi3")
@@ -66,6 +67,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adu1i"]
 size = Vector2(50, 17)
 
+[sub_resource type="Gradient" id="Gradient_5tl75"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.717647, 0.341176, 0.478431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_heqtq"]
+gradient = SubResource("Gradient_5tl75")
+width = 2
+height = 1
+
 [node name="ControlPanel" type="StaticBody2D"]
 texture_filter = 1
 script = ExtResource("1_dgulb")
@@ -89,5 +99,14 @@ position = Vector2(-26, 2)
 sprite_frames = SubResource("SpriteFrames_25orb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-9, -3.5)
 shape = SubResource("RectangleShape2D_adu1i")
+
+[node name="Altimeter" type="Sprite2D" parent="."]
+position = Vector2(12, -11)
+texture = SubResource("GradientTexture2D_heqtq")
+centered = false
+script = ExtResource("5_w6cr2")
+max_altitude_pos = Vector2(12, -11)
+min_altitude_pos = Vector2(12, 3)
