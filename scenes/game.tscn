@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cskb3ggrsnsph"]
+[gd_scene load_steps=48 format=3 uid="uid://cskb3ggrsnsph"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fbnw6"]
 [ext_resource type="Script" path="res://scripts/airship.gd" id="1_vugrx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cddo8d6ivc6al" path="res://sprites/kenney/tilemap_packed.png" id="5_brao4"]
 [ext_resource type="PackedScene" uid="uid://cox0py5tss8ai" path="res://scenes/control_panel.tscn" id="5_c0fbq"]
 [ext_resource type="PackedScene" uid="uid://ccwk0um5l8e1m" path="res://scenes/tutorial_intro.tscn" id="7_urahg"]
+[ext_resource type="PackedScene" uid="uid://drd6obqg3n5m6" path="res://scenes/pause_menu.tscn" id="8_fmpoj"]
 [ext_resource type="Script" path="res://scripts/timer_label.gd" id="8_l3frb"]
 [ext_resource type="AudioStream" uid="uid://dkquo6p3pmy0w" path="res://sounds/sfx/sfx_airship_backward.wav" id="8_ma01y"]
 [ext_resource type="PackedScene" uid="uid://b8i7x861lvm7k" path="res://scenes/radar.tscn" id="9_ddyvd"]
@@ -19,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bb07xv376cmga" path="res://sounds/sfx/sfx_airship_forward.wav" id="9_u2oyr"]
 [ext_resource type="AudioStream" uid="uid://ca8qriy2ld5j8" path="res://sounds/sfx/sfx_airship_stop.wav" id="10_ewhr6"]
 [ext_resource type="PackedScene" uid="uid://doj4a7ovac6pm" path="res://scenes/delivery_button.tscn" id="10_vov0c"]
-[ext_resource type="PackedScene" uid="uid://uxhqo0gjfg0g" path="res://scenes/GameOver.tscn" id="14_niaus"]
+[ext_resource type="PackedScene" uid="uid://uxhqo0gjfg0g" path="res://scenes/game_over.tscn" id="14_niaus"]
 [ext_resource type="PackedScene" uid="uid://d3sme3um5uy8e" path="res://scenes/stairs.tscn" id="17_uo367"]
 [ext_resource type="PackedScene" uid="uid://djoxae2hkwkd5" path="res://scenes/hole.tscn" id="18_0ltu5"]
 [ext_resource type="PackedScene" uid="uid://b28va3pgdpvfy" path="res://scenes/motor.tscn" id="18_hemfu"]
@@ -267,6 +268,9 @@ text = "Steer"
 process_mode = 3
 visible = false
 
+[node name="PauseMenu" parent="UI" instance=ExtResource("8_fmpoj")]
+process_mode = 3
+
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_fbnw6")
 
@@ -282,6 +286,7 @@ script = ExtResource("2_as3ki")
 script = ExtResource("4_qgsei")
 
 [node name="BGMZepelim" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("29_qf4j3")
 autoplay = true
 
@@ -409,6 +414,7 @@ texture = SubResource("AtlasTexture_af3c1")
 offset = Vector2(1, -27)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Airship"]
+visible = false
 energy = 0.9
 blend_mode = 1
 script = ExtResource("34_4em7p")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bl84kxmf30sss" path="res://resources/theme.tres" id="1_cwkar"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="2_w3xb6"]
-[ext_resource type="PackedScene" uid="uid://4yxs04wsyrfm" path="res://scenes/menu.tscn" id="3_4hrgo"]
+[ext_resource type="PackedScene" uid="uid://ccwk0um5l8e1m" path="res://scenes/tutorial_intro.tscn" id="3_4hrgo"]
 [ext_resource type="PackedScene" uid="uid://bgyk5h4ldngji" path="res://scenes/settings_menu.tscn" id="3_bl2q4"]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("pause_main_menu", "settings_menu")]
@@ -58,10 +58,6 @@ text = "Resume"
 layout_mode = 2
 text = "Settings"
 
-[node name="MenuButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Menu"
-
 [node name="QuitButton" type="Button" parent="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit
@@ -74,5 +70,4 @@ previous_menu = NodePath("../MainMenu")
 
 [connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenu/MarginContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

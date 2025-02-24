@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://baqmsqvkcpdcj" path="res://scenes/interact.tscn" id="1_o3nk7"]
 [ext_resource type="Script" path="res://scripts/interact_stairs.gd" id="3_3urly"]
-[ext_resource type="PackedScene" uid="uid://c3f7n38ijyd7g" path="res://scenes/GameOver.tscn" id="3_qb374"]
+[ext_resource type="PackedScene" uid="uid://uxhqo0gjfg0g" path="res://scenes/game_over.tscn" id="3_qb374"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdxnv"]
 radius = 20.0
