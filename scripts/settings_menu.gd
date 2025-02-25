@@ -5,7 +5,6 @@ extends Control
 @export var fullscreen_checkbox: CheckBox
 @export var volume_slider: HSlider
 
-
 func _ready() -> void:
 	# Initialize volume slider with current volume
 	volume_slider.value = db_to_linear(AudioServer.get_bus_volume_db(0)) * 100
