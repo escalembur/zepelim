@@ -4,6 +4,7 @@ extends Sprite2D
 @onready var delivery_manager := Global.delivery_manager
 @onready var pointer := $Node2D
 @onready var sprite := $Node2D/Sprite2D
+@onready var audio_stream := $AudioStreamPlayer2D
 
 var sprite_start_pos 
 var is_flashing := false
@@ -43,6 +44,9 @@ func _process(delta: float) -> void:
 		# Start flashing when close
 		is_flashing = true
 		sprite.position = Vector2(sprite_start_pos.x, 0.0)
+		
+		if !audio_stream.playing:
+			audio_stream.play()
 		
 		# Calculate flashing effect using sine wave
 		flash_timer += delta * 8  # Adjust speed with multiplier

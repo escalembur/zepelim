@@ -333,6 +333,7 @@ script = ExtResource("4_qgsei")
 [node name="BGMZepelim" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("29_qf4j3")
+volume_db = -25.0
 autoplay = true
 
 [node name="SFXItems" type="AudioStreamPlayer" parent="."]
